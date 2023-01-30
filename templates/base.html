@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html class="h-100">
+<html>
 
 <head>
     <title>Recipe Rustlers</title>
@@ -20,14 +20,66 @@
 
 </head>
 
-<body class="d-flex flex-column h-100 main-bg">
-
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="#">Recipe Rustlers</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Your hearted recipes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Add a recipe</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">New recipes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Popular recipes</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="#">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="#">Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Login</a>
+            </li>
+            {% endif %}
+          </ul>
+          
+        </div>
+        </div>
+      </nav>
 Hello!
     <main class="flex-shrink-0 main-bg">
         {% block content %}
         <!-- Content Goes here -->
         {% endblock content %}
     </main>
+
+    <footer class="fixed-bottom">
+        <p class="float-start ms-3">Recipe Rustlers 2023</p>
+        <p class="float-end me-3">Follow us:
+            <a href="https://en-gb.facebook.com/" target="_blank" title="Go to Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/" target="_blank" title="Go to Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://twitter.com/?lang=en" target="_blank" title="Go to Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.youtube.com/" target="_blank" title="Go to Youtube"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/en/" target="_blank" title="Go to TikTok"><i class="fab fa-tiktok"></i></a>
+        </p>
+    </footer>
 </body>
 
 </html>
