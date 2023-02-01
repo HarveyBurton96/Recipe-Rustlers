@@ -38,3 +38,15 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"Comment {self.body} by {self.name}"
+
+
+class Ingredient(models.Model):
+    recipe = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='ingredients')
+    ingredientName = models.CharField(max_length=80)
+    unit = models.CharField(max_length=80)
+
+
+class Instruction(models.Model):
+    recipe = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='instructions')
+    step = models.IntegerField(1)
+    detail = models.CharField(max_length=200)
