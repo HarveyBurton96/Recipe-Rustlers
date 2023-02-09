@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% block content %}
+{% load crispy_forms_tags %}
+
+<div class="masthead">
+    <div class="container top">
+        <div class="row g-0">
+            <div class="col-md-6 masthead-text">
+                <!-- Post title goes in these h1 tags -->
+                <h1 class="post-title">{{ post.title }}</h1>
+                {{ post.author }}
+                <br>
+                {{ post.created_on }}
+                <br>
+                {{ post.surving }}
+                <br>
+                {{ post.number_of_likes }}
+                <br>
+                {{ post.featured_image }}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

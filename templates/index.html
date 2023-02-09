@@ -44,7 +44,7 @@
                     <p class="card-text">Author: {{ post.author }}<br>{{ post.created_on}} 
                         <i class="far fa-heart"></i>
                         {{ post.number_of_likes }}</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <a href="{% url 'recipe:recipe_detail' post.slug %}">Go to recipe</a>
                     </div>
                 </div>
             </div>
