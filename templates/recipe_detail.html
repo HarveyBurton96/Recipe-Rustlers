@@ -15,7 +15,18 @@
                 <br>
                 {{ post.number_of_likes }}
                 <br>
-                {{ post.featured_image }}
+                <img src="{{ post.featured_image }}">
+                <br>
+                <br>
+                {% for comment in comments %}
+                <br>
+                {{ comment.name }}
+                <br>
+                {{ comment.created_on }}
+                <br>
+                {{ comment.body }}
+                <br>
+                {% endfor %}
             </div>
         </div>
     </div>
