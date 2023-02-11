@@ -12,6 +12,13 @@ class PostList(generic.ListView):
     paginate_by = 12
 
 
+class PopularRecipes(generic.ListView):
+    model = Post
+    queryset = Post.objects.filter(status=1).order_by('likes')
+    template_name = "popular_recipe.html"
+    paginate_by = 12
+
+
 def add_recipe(request):
     submitted = False
     if request.method == "POST":
