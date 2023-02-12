@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.models import User
-from .models import Post, Comment
+from .models import Post, Comment, Ingredient, Instruction
 
 CHOICES = [(1, 'Draft'), (2, 'Published')]
 
@@ -26,3 +26,15 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('body',)
+
+
+class IngredientForm(forms.ModelForm):
+    class Meta:
+        model = Ingredient
+        fields = ('ingredientName', 'weight', 'unit',)
+
+
+class InstructionForm(forms.ModelForm):
+    class Meta:
+        model = Instruction
+        fields = ('step', 'detail',)

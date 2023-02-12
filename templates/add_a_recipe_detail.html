@@ -1,0 +1,65 @@
+{% extends 'base.html' %} {% block content %}
+{% load crispy_forms_tags %}
+
+<div class="masthead">
+    <div class="container top">
+        <div class="row g-0">
+            <div class="col-md-6 masthead-text">
+                <!-- Post title goes in these h1 tags -->
+                <h1 class="post-title">{{ post.title }}</h1>
+                <br>
+                {{ post.surving }}
+                <br>
+                <img src="{{ post.featured_image }}">
+                <br>
+                <br>
+                {% for ingredient in ingredients %}
+                <br>
+                {{ ingredient.ingredientName }}
+                <br>
+                {{ ingredient.weight }}
+                <br>
+                {{ ingredient.unit }}
+                <br>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card-body">
+
+    {% if user.is_authenticated %}
+
+    <form method="post" sty;e="margin-top: 1.3em">
+        {{ ingredient_form | crispy }}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+    </form>
+    {% endif %}
+
+</div>
+
+<br>
+                {% for instruction in instructions %}
+                <br>
+                {{ instruction.step }}
+                <br>
+                {{ instruction.detail }}
+                <br>
+                {% endfor %}
+
+<div class="card-body">
+
+    {% if user.is_authenticated %}
+
+    <form method="post" sty;e="margin-top: 1.3em">
+        {{ instruction_form | crispy }}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+    </form>
+    {% endif %}
+
+</div>
+
+{% endblock content %}

@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from .models import Post
-from .forms import PostForm, CommentForm
+from .forms import PostForm, CommentForm, IngredientForm, InstructionForm
 from django.http import HttpResponseRedirect
 
 
@@ -28,17 +28,62 @@ class NewRecipes(generic.ListView):
 
 def add_recipe(request):
     submitted = False
+    form = PostForm
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/add_a_recipe?submitted=True')
     else:
-        form = PostForm
         if 'submitted' in request.GET:
             submitted = True
 
-    return render(request, 'add_a_recipe.html', {'form': form, 'submitted': submitted})
+    return render(
+        request,
+        'add_a_recipe.html',
+        {
+            'form': form,
+            'submitted': submitted,
+        },
+    )
+
+
+class add_recipeDetails(View):
+    def post(self, request, slug, *args, **kwargs):
+        queryset = Post.objects.filter(status=1)
+        post = get_object_or_404(queryset, slug=slug)
+        ingredients = post.ingredients
+        instructions = post.instructions
+
+        ingredient_form = IngredientForm(data=request.POST)
+
+        if ingredient_form.is_valid():
+            ingredient = ingredient_form.save(commit=False)
+            ingredient.recipe = post
+            ingredient.save()
+        else:
+            ingredient_form = IngredientForm()
+
+        instruction_form = InstructionForm(data=request.POST)
+
+        if instruction_form.is_valid():
+            instruction = instruction_form.save(commit=False)
+            instruction.recipe = post
+            instruction.save()
+        else:
+            instruction_form = InstructionForm()
+
+        return render(
+            request,
+            "add_a_recipe_detail.html",
+            {
+                "post": post,
+                "ingredients": ingredients,
+                "instructions": instructions,
+                "instruction_form": InstructionForm(),
+                "ingredient_form": IngredientForm(),
+            },
+        )
 
 
 class PostDetail(View):

@@ -43,6 +43,7 @@ class Comment(models.Model):
 class Ingredient(models.Model):
     recipe = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='ingredients')
     ingredientName = models.CharField(max_length=80)
+    weight = models.IntegerField(default=1)
     unit = models.CharField(max_length=80)
 
 
