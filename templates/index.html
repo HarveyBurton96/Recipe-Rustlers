@@ -29,7 +29,7 @@
 <h2 class="text-center">Twelve Random Recipes</h2>
 
 <div class="container">
-    <div class="row row-cols-4">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
         {% for post in post_list %}
         <div class="col">
             <div class="card">
@@ -40,11 +40,10 @@
                     <img class="card-img-top" src=" {{ post.featured_image.url }}">
                     {% endif %}
                     <div class="card-body">
-                    <h5 class="card-title">{{ post.title }}</h5>
+                        <a href="{% url 'recipe:recipe_detail' post.slug %}"><h5 class="card-title">{{ post.title }}</h5></a>
                     <p class="card-text">Author: {{ post.author }}<br>{{ post.created_on}} 
                         <i class="far fa-heart"></i>
                         {{ post.number_of_likes }}</p>
-                    <a href="{% url 'recipe:recipe_detail' post.slug %}">Go to recipe</a>
                     </div>
                 </div>
             </div>

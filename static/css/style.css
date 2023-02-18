@@ -51,7 +51,8 @@ a {
 
 .nav-link:hover {
     text-decoration: underline;
-    color: white;   
+    color: white;
+    background-color: #218F70;
 }
 
 a:hover {
@@ -62,4 +63,31 @@ a:hover {
 
 .card {
     background-color: #05402F;
+    margin-top: 7px;
+}
+
+.card-title:hover {
+    text-decoration: underline;
+    color: white;   
+}
+
+.top-style {
+    margin-top: 85px;
+}
+
+.page-link {
+    text-decoration: none;
+    border: black;
+    background-color: #05402F;
+    color: white;  
+}
+
+.page-link:hover {
+    background-color: #218F70;
+    color: white;
+}
+
+.pagination {
+    margin-top: 10px;
+    margin-bottom: 7.5px;
 }
