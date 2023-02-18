@@ -6,8 +6,8 @@
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
 {% block content %}
-
-<h1>{% trans "Sign In" %}</h1>
+<div class="login-style">
+<h1 class="top-style">{% trans "Sign In" %}</h1>
 
 
 <p>{% blocktrans %}If you have not created an account yet, then please
@@ -21,7 +21,8 @@
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
   
-  <button class="btn" type="submit">{% trans "Sign In" %}</button>
+  <button class="btn button" type="submit">{% trans "Sign In" %}</button>
 </form>
+</div>
 
 {% endblock %}
