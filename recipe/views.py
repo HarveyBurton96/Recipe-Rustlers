@@ -28,13 +28,13 @@ class NewRecipes(generic.ListView):
 
 def add_recipe(request):
     submitted = False
-    form = PostForm
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/add_a_recipe?submitted=True')
+            return HttpResponseRedirect('/add_a_recipe?submitted=True?slug=form.slug')
     else:
+        form = PostForm
         if 'submitted' in request.GET:
             submitted = True
 

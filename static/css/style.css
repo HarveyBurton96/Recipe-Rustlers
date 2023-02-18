@@ -3,13 +3,63 @@
 }
 
 .image-collage {
-    margin-top: 56px;
+    margin-top: 76px;
 }
 
 .image-second {
     margin-top: 24px;
 }
 
+/* This is the base.html styles*/
+
 .top {
     margin-top: 100px;
+}
+
+.footer-style {
+    background-color: #05402F;
+    color: white;
+    padding-top: 15px;
+}
+
+.main-style {
+    margin-bottom: 55px;
+    padding-top: 2px;
+    padding-bottom: 5px;
+    background-color: #1F1E26;
+    color: white;
+}
+
+.navbar {
+    padding: 0px;
+}
+
+.nav-style {
+    background-color: #05402F;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+    color: white;   
+}
+
+a:hover {
+    color: #218F70;
+}
+
+/* Index page */
+
+.card {
+    background-color: #05402F;
 }

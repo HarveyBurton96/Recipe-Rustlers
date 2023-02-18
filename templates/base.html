@@ -21,9 +21,9 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'recipe:home' %}">Recipe Rustlers</a>
+    <nav class="navbar navbar-expand-lg bg-light fixed-top">
+        <div class="container-fluid nav-style">
+        <a class="navbar-brand nav-link" href="{% url 'recipe:home' %}">Recipe Rustlers</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -63,14 +63,14 @@
         </div>
         </div>
       </nav>
-Hello!
-    <main>
+
+    <main class="main-style">
         {% block content %}
         <!-- Content Goes here -->
         {% endblock content %}
     </main>
 
-    <footer class="fixed-bottom">
+    <footer class="fixed-bottom footer-style">
         <p class="float-start ms-3">Recipe Rustlers 2023</p>
         <p class="float-end me-3">Follow us:
             <a href="https://en-gb.facebook.com/" target="_blank" title="Go to Facebook"><i class="fab fa-facebook"></i></a>
