@@ -9,7 +9,7 @@
 {% if submitted %}
     Your recipe was submitted succesfully!
 
-    <a href="{% url 'recipe:add_a_recipe_detail' slug %}">To the next page!!</a>
+    <a href="{% url 'recipe:add_a_recipe_detail' post.slug %}">To the next page!!</a>
 {% else %}
     <P>First lets add the basics of the recipe don't worry the ingredients and instructions are entered on the next page one this form is filled out.</P>
     <form action="" method="POST">

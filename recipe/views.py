@@ -3,6 +3,7 @@ from django.views import generic, View
 from .models import Post
 from .forms import PostForm, CommentForm, IngredientForm, InstructionForm
 from django.http import HttpResponseRedirect
+from django.contrib.auth.models import User
 
 
 class PostList(generic.ListView):
@@ -26,13 +27,20 @@ class NewRecipes(generic.ListView):
     paginate_by = 12
 
 
-def add_recipe(request):
+class LovedRecipes(generic.ListView):
+    model = Post
+    queryset = User.objects.prefetch_related('recipe_likes').all()
+    template_name = "loved_recipes.html"
+    paginate_by = 12
+
+
+def add_recipe(request, slug=None):
     submitted = False
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/add_a_recipe?submitted=True?')
+            return HttpResponseRedirect('/add_a_recipe?submitted=True?', slug)
     else:
         form = PostForm()
         if 'submitted' in request.GET:
