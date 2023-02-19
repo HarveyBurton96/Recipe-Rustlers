@@ -32,9 +32,9 @@ def add_recipe(request):
         form = PostForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/add_a_recipe?submitted=True?slug=form.slug')
+            return HttpResponseRedirect('/add_a_recipe?submitted=True?')
     else:
-        form = PostForm
+        form = PostForm()
         if 'submitted' in request.GET:
             submitted = True
 
@@ -49,11 +49,29 @@ def add_recipe(request):
 
 
 class add_recipeDetails(View):
+    def get(self, request, slug, *args, **kwargs):
+        queryset = Post.objects.filter(status=1)
+        post = get_object_or_404(queryset, slug=slug)
+        ingredients = post.ingredients.order_by('ingredientName')
+        instructions = post.instructions.order_by('step')
+
+        return render(
+            request,
+            "add_a_recipe_detail.html",
+            {
+                "post": post,
+                "ingredients": ingredients,
+                "instructions": instructions,
+                "instruction_form": InstructionForm(),
+                "ingredient_form": IngredientForm(),
+            },
+        )
+
     def post(self, request, slug, *args, **kwargs):
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
-        ingredients = post.ingredients
-        instructions = post.instructions
+        ingredients = post.ingredients.order_by('ingredientName')
+        instructions = post.instructions.order_by('step')
 
         ingredient_form = IngredientForm(data=request.POST)
 
