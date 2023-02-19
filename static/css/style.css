@@ -113,3 +113,9 @@ body {
 .text-link {
     text-decoration: underline;
 }
+
+.btn-like {
+    background-color: #1F1E26;
+    color: white;
+    border: None;
+}
