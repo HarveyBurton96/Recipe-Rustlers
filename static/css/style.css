@@ -109,3 +109,7 @@ body {
     background-color: #218F70;
     color: white;
 }
+
+.text-link {
+    text-decoration: underline;
+}

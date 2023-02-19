@@ -6,26 +6,47 @@
         <div class="row g-0">
             <div class="col-md-6 masthead-text">
                 <!-- Post title goes in these h1 tags -->
-                <h1 class="post-title">{{ post.title }}</h1>
-                {{ post.author }}
+                <h2 class="post-title">{{ post.title }}</h2>
+                <p>Posted by: {{ post.author }}
                 <br>
-                {{ post.created_on }}
+                Serving size: {{ post.surving }}
                 <br>
-                {{ post.surving }}
+                {{ post.created_on }}, <i class="far fa-heart"></i> {{ post.number_of_likes }}
+                </p>
                 <br>
-                {{ post.number_of_likes }}
+                {% if "no_image" in post.featured_image.url %}
+                
+                {% else %}
+                <img class="card-img-top" src=" {{ post.featured_image.url }}">
+                {% endif %}
                 <br>
-                <img src="{{ post.featured_image }}">
+                <h4>Ingredients:</h4>
+                <ul>
+                {% for ingredient in ingredients %}
+                <li>
+                {{ ingredient.ingredientName }} - {{ ingredient.weight }} {{ ingredient.unit }}
+                </li>
+                {% endfor %}
+                </ul>
                 <br>
-                <br>
+                <h4>Instructions:</h4>
+                <ul>
+                {% for instruction in instructions %}
+                <li>
+                {{ instruction.step }}. {{ instruction.detail }}
+                </li>
+                {% endfor %}
+                </ul>
+                <h4>Comments:</h4>
                 {% for comment in comments %}
+                <p>
+                {{ comment.body }}
                 <br>
                 {{ comment.name }}
                 <br>
                 {{ comment.created_on }}
                 <br>
-                {{ comment.body }}
-                <br>
+                </p>
                 {% endfor %}
             </div>
         </div>
