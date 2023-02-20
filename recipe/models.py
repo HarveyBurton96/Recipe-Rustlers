@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
 STATUS = ((0, "Draft"), (1, "Published"))
+DISH = ((0, "Breakfast"), (1, "Lunch"), (2, "Snack"), (3, "Dinner"), (4, "Dessert"))
 
 
 class Post(models.Model):
@@ -15,6 +16,9 @@ class Post(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
     surving = models.IntegerField(default=2)
     likes = models.ManyToManyField(User, related_name='recipe_likes', blank=True)
+    dish = models.IntegerField(choices=DISH, default=3)
+    prep = models.IntegerField(default=0)
+    cook = models.IntegerField(default=0)
 
     class Meta:
         ordering = ['-created_on']
