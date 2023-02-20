@@ -2,7 +2,6 @@ from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.models import User
 from .models import Post, Comment, Ingredient, Instruction
-from django.template.defaultfilters import slugify
 
 STATUS = [(1, 'Draft'), (2, 'Published')]
 DISH = ((0, "Breakfast"), (1, "Lunch"), (2, "Snack"), (3, "Dinner"), (4, "Dessert"))
@@ -16,7 +15,6 @@ class PostForm(ModelForm):
         status = forms.ChoiceField(choices=STATUS)
         dish = forms.ChoiceField(choices=DISH)
         author = User
-        slug = slugify('title')
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
