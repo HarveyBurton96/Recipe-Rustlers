@@ -13,6 +13,24 @@ class PostList(generic.ListView):
     paginate_by = 12
 
 
+def SearchRecipe(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        posts = Post.objects.filter(title__contains=searched)
+        return render(
+            request,
+            "search_recipe.html",
+            {
+                'searched': searched,
+                "posts": posts,
+            })
+    else:
+        return render(
+            request,
+            "search_recipe.html",
+            {})
+
+
 class PopularRecipes(generic.ListView):
     model = Post
     queryset = Post.objects.filter(status=1).order_by('likes')

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if searched %}
+<h2 class="text-center top-style">You searched for {{ searched }}</h2>
+{% else %}
+<h2 class="text-center top-style">Looks like you forgot to search for a recipe</h2>
+{% endif %}
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+        {% for post in posts %}
+        <div class="col">
+            <div class="card">
+                <div class="image-container">
+                    {% if "no_image" in post.featured_image.url %}
+                    <img src="https://www.firstfence.co.uk/images/no-image.jpg" class="card-img-top">
+                    {% else %}
+                    <img class="card-img-top" src=" {{ post.featured_image.url }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <a href="{% url 'recipe:recipe_detail' post.slug %}"><h5 class="card-title">{{ post.title }}</h5></a>
+                        <p class="card-text">Dish: 
+                            {% if post.dish == 0 %}
+                            Breakfast
+                            {% elif post.dish == 1 %} 
+                            Lunch
+                            {% elif post.dish == 2 %}
+                            Snack
+                            {% elif post.dish == 3 %}
+                            Dinner
+                            {% elif post.dish == 4 %}
+                            Dessert
+                            {% endif %}
+                            <br>Prep: {{ post.prep }}, Cook: {{ post.cook }}<br>Author: {{ post.author }}<br>{{ post.created_on}} 
+                        <i class="far fa-heart"></i>
+                        {{ post.number_of_likes }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% if is_paginated %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+            {% endif %}
+            {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+
+{%endblock%}
