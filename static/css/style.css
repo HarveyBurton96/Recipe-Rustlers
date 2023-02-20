@@ -17,7 +17,7 @@
 }
 
 .footer-style {
-    background-color: #05402F;
+    background-color: #193441;
     color: white;
     padding-top: 15px;
 }
@@ -26,8 +26,8 @@
     margin-bottom: 55px;
     padding-top: 2px;
     padding-bottom: 5px;
-    background-color: #1F1E26;
-    color: white;
+    background-color: #91AA9D;
+    color: black;
 }
 
 .navbar {
@@ -35,7 +35,7 @@
 }
 
 .nav-style {
-    background-color: #05402F;
+    background-color: #193441;
     color: white;
 }
 
@@ -51,18 +51,19 @@ a {
 
 .nav-link:hover {
     color: white;
-    background-color: #218F70;
+    background-color: #3E606F;
 }
 
 a:hover {
-    color: #218F70;
+    color: #3E606F;
 }
 
 /* Index page */
 
 .card {
-    background-color: #05402F;
+    background-color: #193441;
     margin-top: 7px;
+    color: white;
 }
 
 .card-title:hover {
@@ -77,13 +78,13 @@ a:hover {
 .page-link {
     text-decoration: none;
     border: black;
-    background-color: #05402F;
+    background-color: #193441;
     color: white;  
 }
 
 .page-link:hover {
-    background-color: #218F70;
-    color: white;
+    background-color: #3E606F;
+    color: black;
 }
 
 .pagination {
@@ -93,7 +94,7 @@ a:hover {
 
 body {
     height: 100%;
-    background-color: #1F1E26;
+    background-color: #91AA9D;
 }
 
 .login-style {
@@ -101,13 +102,13 @@ body {
 }
 
 .button {
-    background-color: #05402F;
+    background-color: #193441;
     color: white;
 }
 
 .button:hover {
-    background-color: #218F70;
-    color: white;
+    background-color: #3E606F;
+    color: black;
 }
 
 .text-link {
@@ -115,7 +116,7 @@ body {
 }
 
 .btn-like {
-    background-color: #1F1E26;
-    color: white;
+    background-color: #D1DBBD;
+    color: black;
     border: None;
 }
