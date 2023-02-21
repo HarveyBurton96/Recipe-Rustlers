@@ -31,12 +31,20 @@
 }
 
 .navbar {
-    padding: 0px;
+    padding: 0;
+    height: 80px;
+    background-color: #193441;
 }
 
 .nav-style {
     background-color: #193441;
     color: white;
+}
+
+.navbar-brand {
+    border-right: solid white 1px;
+    padding: 0 20px;
+    margin-right: 0;
 }
 
 a {
@@ -119,4 +127,30 @@ body {
     background-color: #D1DBBD;
     color: black;
     border: None;
+}
+
+.search-box {
+    position: fixed;
+    right: 0px;
+    margin-right: 11px;
+}
+
+.search-bar {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.search-btn {
+    border: solid white 1px;
+    color: white;
+    height: 30px;
+    text-align: center;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 4px;
+}
+
+.search-btn:hover {
+    background-color: #3E606F;
+    color: white;
 }
