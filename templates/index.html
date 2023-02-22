@@ -1,30 +1,33 @@
 {% extends "base.html" %}
-
 {% block content %}
 
 <div class="container-fluid image-collage">
     <div class="d-flex flex-wrap justify-content-center">
-    <div class="row">
-        <div class="col-sm-6 col-md-4 col-lg-3">
-            <img class="img-fluid" src="https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-            <img class="img-fluid image-second" src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+        <div class="row">
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <img class="img-fluid" src="https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                <img class="img-fluid image-second" src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+            </div>
+            <div class="col-sm-6 col-md-4 d-none d-sm-block col-lg-3">
+                <img class="img-fluid" src="https://images.pexels.com/photos/1199957/pexels-photo-1199957.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+            </div>
+            <div class="col-sm-6 col-md-4 d-none d-sm-none d-md-block col-lg-3">
+                <img class="img-fluid" src="https://images.pexels.com/photos/3789885/pexels-photo-3789885.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+            </div>
+            <div class="col-sm-6 col-md-4 d-none d-md-none d-sm-none d-lg-block col-lg-3">
+                <img class="img-fluid" src="https://images.pexels.com/photos/2664216/pexels-photo-2664216.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                <img class="img-fluid image-second" src="https://images.pexels.com/photos/1527603/pexels-photo-1527603.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+            </div>
         </div>
-        <div class="col-sm-6 col-md-4 d-none d-sm-block col-lg-3">
-            <img class="img-fluid" src="https://images.pexels.com/photos/1199957/pexels-photo-1199957.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-        </div>
-        <div class="col-sm-6 col-md-4 d-none d-sm-none d-md-block col-lg-3">
-            <img class="img-fluid" src="https://images.pexels.com/photos/3789885/pexels-photo-3789885.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-        </div>
-        <div class="col-sm-6 col-md-4 d-none d-md-none d-sm-none d-lg-block col-lg-3">
-            <img class="img-fluid" src="https://images.pexels.com/photos/2664216/pexels-photo-2664216.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-            <img class="img-fluid image-second" src="https://images.pexels.com/photos/1527603/pexels-photo-1527603.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-        </div>
-    </div>
     </div>
 </div>
 
 <h1 class="text-center">Welcome to Recipe Rustlers!</h1>
-<p class="text-center">The purpose of this website is to help everyone share and discover their favourite recipies. So go ahead, and rustle up some recipies!</p>
+<p class="text-center">
+    The purpose of this website is to help everyone share 
+    and discover their favourite recipies. So go ahead, 
+    and rustle up some recipies!
+</p>
 
 <h2 class="text-center">Twelve Random Recipes</h2>
 
@@ -41,21 +44,22 @@
                     {% endif %}
                     <div class="card-body">
                         <a href="{% url 'recipe:recipe_detail' post.slug %}"><h5 class="card-title">{{ post.title }}</h5></a>
-                    <p class="card-text">Dish: 
-                        {% if post.dish == 0 %}
-                        Breakfast
-                        {% elif post.dish == 1 %} 
-                        Lunch
-                        {% elif post.dish == 2 %}
-                        Snack
-                        {% elif post.dish == 3 %}
-                        Dinner
-                        {% elif post.dish == 4 %}
-                        Dessert
-                        {% endif %}
-                        <br>Prep: {{ post.prep }}, Cook: {{ post.cook }}<br>Author: {{ post.author }}<br>{{ post.created_on}} 
-                        <i class="far fa-heart"></i>
-                        {{ post.number_of_likes }}</p>
+                        <p class="card-text">Dish: 
+                            {% if post.dish == 0 %}
+                            Breakfast
+                            {% elif post.dish == 1 %} 
+                            Lunch
+                            {% elif post.dish == 2 %}
+                            Snack
+                            {% elif post.dish == 3 %}
+                            Dinner
+                            {% elif post.dish == 4 %}
+                            Dessert
+                            {% endif %}
+                            <br>Prep: {{ post.prep }}, Cook: {{ post.cook }}<br>Author: {{ post.author }}<br>{{ post.created_on}} 
+                            <i class="far fa-heart"></i>
+                            {{ post.number_of_likes }}
+                        </p>
                     </div>
                 </div>
             </div>
@@ -63,6 +67,5 @@
         {% endfor %}
     </div>
 </div>
-
 
 {%endblock%}
