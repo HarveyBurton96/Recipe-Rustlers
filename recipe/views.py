@@ -4,6 +4,7 @@ from .models import Post
 from .forms import PostForm, CommentForm, IngredientForm, InstructionForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
+from django.db.models import Count
 
 
 class PostList(generic.ListView):
@@ -33,7 +34,7 @@ def SearchRecipe(request):
 
 class PopularRecipes(generic.ListView):
     model = Post
-    queryset = Post.objects.filter(status=1).order_by('likes')
+    queryset = Post.objects.filter(status=1).annotate(like_count=Count('likes')).order_by('-like_count')
     template_name = "popular_recipe.html"
     paginate_by = 12
 
