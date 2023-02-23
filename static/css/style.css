@@ -175,3 +175,51 @@ body {
         text-align: center;
     }
 }
+
+.image-container {
+    height: 190px;
+    width: 304px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+}
+
+.card-img-top {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.detail-top {
+    text-align: center;
+}
+
+li {
+    list-style-type: none;
+}
+
+col {
+    padding: 0;
+}
+
+.recipe-details {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.comment-successful {
+    background-color: #3E606F;
+    color: white;
+}
+
+.btn-signup {
+    background-color: #193441;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+.btn-signup:hover {
+    background-color: #3E606F;
+    color: white;
+}

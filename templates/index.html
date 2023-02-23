@@ -42,6 +42,7 @@
                     {% else %}
                     <img class="card-img-top" src=" {{ post.featured_image.url }}">
                     {% endif %}
+                </div>
                     <div class="card-body">
                         <a href="{% url 'recipe:recipe_detail' post.slug %}"><h5 class="card-title">{{ post.title }}</h5></a>
                         <p class="card-text">Dish: 
@@ -61,7 +62,7 @@
                             {{ post.number_of_likes }}
                         </p>
                     </div>
-                </div>
+
             </div>
         </div>
         {% endfor %}
