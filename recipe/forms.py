@@ -10,15 +10,14 @@ DISH = ((0, "Breakfast"), (1, "Lunch"), (2, "Snack"), (3, "Dinner"), (4, "Desser
 class PostForm(ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'slug', 'featured_image', 'status', 'surving', 'dish', 'prep', 'cook')
+        fields = ('title', 'featured_image', 'author', 'status', 'surving', 'dish', 'prep', 'cook')
 
         status = forms.ChoiceField(choices=STATUS)
         dish = forms.ChoiceField(choices=DISH)
-        author = User
+        author = User.username
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control-long'}),
-            'slug': forms.TextInput(attrs={'class': 'form-control-long'}),
             'featured_image': forms.FileInput(attrs={'class': 'form-control-long'}),
             'status': forms.Select(attrs={'class': 'form-control-medium'}),
             'surving': forms.NumberInput(attrs={'class': 'form-control-short'}),

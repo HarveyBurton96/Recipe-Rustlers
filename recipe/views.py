@@ -1,10 +1,11 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic, View
 from .models import Post
 from .forms import PostForm, CommentForm, IngredientForm, InstructionForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.db.models import Count
+from django.utils.text import slugify
 
 
 class PostList(generic.ListView):
@@ -53,13 +54,15 @@ class LovedRecipes(generic.ListView):
     paginate_by = 12
 
 
-def add_recipe(request, slug=None):
+def add_recipe(request):
     submitted = False
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
+            form.slug = slugify(form.cleaned_data.get('title'))
+            print(form.slug)
             form.save()
-            return HttpResponseRedirect('/add_a_recipe?submitted=True?', slug)
+            return redirect('recipe:add_a_recipe_detail', slug=form.slug)
     else:
         form = PostForm()
         if 'submitted' in request.GET:
