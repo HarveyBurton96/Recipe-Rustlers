@@ -3,21 +3,23 @@
 {% block content %}
 {% load crispy_forms_tags %}
 <div class="top">
-<h1>Add a recipe</h1>
+<h1 class="centered-text">Add a recipe</h1>
 </div>
-<br/><br/>
 {% if submitted %}
-    Your recipe was submitted succesfully!
-
-    <a href="{% url 'recipe:add_a_recipe_detail' post.slug %}">To the next page!!</a>
+    <p class="centered-text">
+        Your recipe was submitted succesfully!
+        <br>
+        <a href="{% url 'recipe:add_a_recipe_detail' post.slug %}">To the next page!!</a>
+    </p>
 {% else %}
-    <P>First lets add the basics of the recipe don't worry the ingredients and instructions are entered on the next page one this form is filled out.</P>
-    <form action="" method="POST">
+    <p class="centered-text">First lets add the basics of the recipe don't worry the ingredients and instructions are entered on the next page one this form is filled out.</p>
+    <form action="" method="POST" class="add-recipe-style">
         {% csrf_token %}
-
+        <div class="form-style">
         {{ form.as_p }}
     
-        <input type="submit" value="submit" class="btn btn-signup">
+        <input type="submit" value="Submit" class="btn btn-signup">
+    </div>
     </form>
     
 {% endif %}

@@ -79,7 +79,7 @@
                 <h3>Leave a comment:</h3>
                 <br>
                 <p>Posting as: {{ user.username }}</p>
-                <form method="post" sty;e="margin-top: 1.3em">
+                <form method="post" style="margin-top: 1.3em">
                     {{ comment_form | crispy }}
                     {% csrf_token %}
                     <button type="submit" class="btn btn-signup btn-lg">Submit</button>

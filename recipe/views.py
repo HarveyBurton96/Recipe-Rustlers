@@ -48,7 +48,7 @@ class NewRecipes(generic.ListView):
 
 class LovedRecipes(generic.ListView):
     model = Post
-    queryset = User.objects.prefetch_related('recipe_likes').all()
+    queryset = User.objects.prefetch_related('recipe_likes').get(pk=1).recipe_likes.all()
     template_name = "loved_recipes.html"
     paginate_by = 12
 

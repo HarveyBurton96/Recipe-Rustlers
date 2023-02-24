@@ -190,6 +190,31 @@ body {
     object-fit: cover;
 }
 
+@media (max-width:1399px) {
+    .image-container {
+        width: 259px;
+    }
+}
+
+@media (max-width:1199px) {
+    .image-container {
+        width: 214px;
+    }
+}
+
+@media (max-width:767px) {
+    .image-container {
+        width: 244px;
+    }
+}
+
+@media (max-width:575px) {
+    .image-container {
+        width: 100%;
+        height: 100%;
+    }
+}
+
 .detail-top {
     text-align: center;
 }
@@ -222,4 +247,43 @@ col {
 .btn-signup:hover {
     background-color: #3E606F;
     color: white;
+}
+
+.form-control-long {
+    width: 300px;
+}
+
+.form-control-medium {
+    width: 100px;
+}
+
+.form-control-short {
+    width: 60px;
+}
+
+.form-style {
+    margin-left: 20%;
+}
+
+@media (max-width:600px) {
+    .form-style {
+        margin-left: 10%;
+    }
+}
+
+@media (max-width:430px) {
+    .form-style {
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+}
+
+.centered-text {
+    text-align: center;
+}
+
+@media (max-width:363px) {
+    .main-style {
+        margin-bottom: 95px;
+    }
 }

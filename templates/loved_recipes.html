@@ -2,6 +2,10 @@
 {% block content %}
 
 <h2 class="text-center top-style">Your Loved Recipes</h2>
+{% if user.is_authenticated %}
+{% if liked %}
+    
+                        
 
 <div class="container">
     <div class="row row-cols-4">
@@ -58,5 +62,10 @@
     </ul>
 </nav>
 {% endif %}
+
+<button type="submit" name="recipe_id" value="{{post.slug}}" class="btn-like"><i class="far fa-heart"></i></button>
+{% endif %}
+{% endif %}
+                  
 
 {%endblock%}
