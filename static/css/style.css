@@ -257,6 +257,10 @@ col {
     width: 100px;
 }
 
+.form-control-sm {
+    width: 75px;
+}
+
 .form-control-short {
     width: 60px;
 }
@@ -278,6 +282,13 @@ col {
     }
 }
 
+@media (max-width:350px) {
+    .form-style {
+        margin-left: 1px;
+        margin-right: 5px;
+    }
+}
+
 .centered-text {
     text-align: center;
 }
@@ -286,4 +297,12 @@ col {
     .main-style {
         margin-bottom: 95px;
     }
+}
+
+.asteriskField {
+    display: none;
+}
+
+.padded-text {
+    padding: 16px;
 }

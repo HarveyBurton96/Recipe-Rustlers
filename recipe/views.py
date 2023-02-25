@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.db.models import Count
 from django.utils.text import slugify
+from cloudinary.forms import cl_init_js_callbacks
 
 
 class PostList(generic.ListView):
@@ -49,15 +50,18 @@ class NewRecipes(generic.ListView):
 
 class LovedRecipes(generic.ListView):
     model = Post
-    queryset = User.objects.prefetch_related('recipe_likes').get(pk=1).recipe_likes.all()
     template_name = "loved_recipes.html"
     paginate_by = 12
 
+    def get_queryset(self):
+        user = self.request.user
+        queryset = user.recipe_likes.all()
+        return queryset
+
 
 def add_recipe(request):
-    submitted = False
     if request.method == "POST":
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             form.slug = slugify(form.cleaned_data.get('title'))
             print(form.slug)
@@ -65,15 +69,12 @@ def add_recipe(request):
             return redirect('recipe:add_a_recipe_detail', slug=form.slug)
     else:
         form = PostForm()
-        if 'submitted' in request.GET:
-            submitted = True
 
     return render(
         request,
         'add_a_recipe.html',
         {
             'form': form,
-            'submitted': submitted,
         },
     )
 

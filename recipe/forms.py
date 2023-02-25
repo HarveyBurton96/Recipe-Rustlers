@@ -38,8 +38,29 @@ class IngredientForm(forms.ModelForm):
         model = Ingredient
         fields = ('ingredientName', 'weight', 'unit',)
 
+        widgets = {
+            'ingredientName': forms.TextInput(attrs={'class': 'form-control-long'}),
+            'weight': forms.NumberInput(attrs={'class': 'form-control-sm'}),
+            'unit': forms.TextInput(attrs={'class': 'form-control-short'}),
+        }
+
+        labels = {
+            'ingredientName': 'Ingredient name',
+            'unit': 'Unit (if no unit then please enter -)',
+        }
+
 
 class InstructionForm(forms.ModelForm):
     class Meta:
         model = Instruction
         fields = ('step', 'detail',)
+
+        widgets = {
+            'step': forms.NumberInput(attrs={'class': 'form-control-short'}),
+            'detail': forms.Textarea(attrs={'class': 'form-control-long'}),
+        }
+
+        labels = {
+            'step': 'Please enter the step number',
+            'detail': 'Please enter you steps instructions here',
+        }

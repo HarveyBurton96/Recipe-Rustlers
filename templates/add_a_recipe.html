@@ -1,19 +1,11 @@
-{% extends "base.html" %}
-
+{% extends "base.html" %} 
 {% block content %}
 {% load crispy_forms_tags %}
 <div class="top">
 <h1 class="centered-text">Add a recipe</h1>
 </div>
-{% if submitted %}
-    <p class="centered-text">
-        Your recipe was submitted succesfully!
-        <br>
-        <a href="{% url 'recipe:add_a_recipe_detail' slug %}">To the next page!!</a>
-    </p>
-{% else %}
     <p class="centered-text">First lets add the basics of the recipe don't worry the ingredients and instructions are entered on the next page one this form is filled out.</p>
-    <form action="" method="POST" class="add-recipe-style">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-style">
         {{ form.as_p }}
@@ -21,7 +13,5 @@
         <input type="submit" value="Submit" class="btn btn-signup">
     </div>
     </form>
-    
-{% endif %}
 
 {%endblock%}

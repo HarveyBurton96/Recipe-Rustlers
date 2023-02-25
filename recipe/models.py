@@ -27,6 +27,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def number_of_likes(self):
+        return self.likes.count()
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
@@ -57,4 +60,4 @@ class Ingredient(models.Model):
 class Instruction(models.Model):
     recipe = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='instructions')
     step = models.IntegerField(1)
-    detail = models.CharField(max_length=800)
+    detail = models.TextField()
