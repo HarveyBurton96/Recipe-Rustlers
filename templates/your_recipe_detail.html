@@ -40,7 +40,7 @@
             <h4>Ingredients:</h4>
             {% for ingredient in ingredients %}
             <br>
-            {{ ingredient.ingredientName }} - {{ ingredient.weight }} {{ ingredient.unit }}
+            {{ ingredient.ingredientName }} - {{ ingredient.weight }} {{ ingredient.unit }} - <a href="{% url 'recipe:update_ingredients' ingredient.id %}">Update</a>
             {% endfor %}
         </div>
     </div>
