@@ -3,8 +3,8 @@
 
 
 <div class="container top detail-top">
-
-    <p><a href="{% url 'recipe:update_recipe' post.slug %}">Update overview</a></p>
+    <h2 class="post-title">{{ post.title }}</h2>
+    <p><a href="{% url 'recipe:update_recipe' post.slug %}">Update recipe overview</a></p>
 
     <div class="row row-cols-1 row-cols-sm-2">
         <div class="col">
@@ -22,7 +22,7 @@
                 <br>
                 {{ post.created_on }}, 
                 <strong>
-                    <span class="text-secondary">><i class="far fa-heart"></i></span>
+                    <span class="text-secondary"><i class="far fa-heart"></i></span>
                     {{ post.number_of_likes }}
                 </strong>
             </p>
@@ -32,7 +32,7 @@
             <h4>Instructions:</h4>
             {% for instruction in instructions %}
             <br>
-            {{ instruction.step }}. {{ instruction.detail }}
+            {{ instruction.step }}. {{ instruction.detail }} - <a href="{% url 'recipe:update_instructions' instruction.id %}">Update</a>
             {% endfor %}
         </div>
         <div class="col">
