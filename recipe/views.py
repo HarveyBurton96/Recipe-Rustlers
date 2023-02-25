@@ -52,11 +52,41 @@ class LovedRecipes(generic.ListView):
     model = Post
     template_name = "loved_recipes.html"
     paginate_by = 12
+    context_object_name = 'recipe:loved_recipes'
 
     def get_queryset(self):
         user = self.request.user
         queryset = user.recipe_likes.all()
         return queryset
+
+
+class YourRecipes(generic.ListView):
+    model = Post
+    template_name = "your_recipes.html"
+    paginate_by = 12
+
+    def get_queryset(self):
+        user = self.request.user
+        queryset = Post.objects.filter(author=user)
+        return queryset
+
+
+def UpdateRecipe(request, slug):
+    queryset = Post.objects
+    post = get_object_or_404(queryset, slug=slug)
+    form = PostForm(request.POST or None, instance=post)
+    if form.is_valid():
+        form.save()
+        return redirect('recipe:your_recipes')
+
+    return render(
+            request,
+            "update_recipe.html",
+            {
+                "post": post,
+                "form": form,
+            },
+        )
 
 
 def add_recipe(request):
@@ -81,7 +111,7 @@ def add_recipe(request):
 
 class add_recipeDetails(View):
     def get(self, request, slug, *args, **kwargs):
-        queryset = Post.objects.filter(status=1)
+        queryset = Post.objects.filter()
         post = get_object_or_404(queryset, slug=slug)
         ingredients = post.ingredients.order_by('ingredientName')
         instructions = post.instructions.order_by('step')
@@ -138,7 +168,7 @@ class add_recipeDetails(View):
 class PostDetail(View):
 
     def get(self, request, slug, *args, **kwargs):
-        queryset = Post.objects.filter(status=1)
+        queryset = Post.objects.filter()
         post = get_object_or_404(queryset, slug=slug)
         comments = post.comments.order_by('created_on')
         ingredients = post.ingredients.order_by('ingredientName')
@@ -162,7 +192,7 @@ class PostDetail(View):
         )
 
     def post(self, request, slug, *args, **kwargs):
-        queryset = Post.objects.filter(status=1)
+        queryset = Post.objects.filter()
         post = get_object_or_404(queryset, slug=slug)
         comments = post.comments.order_by('created_on')
         ingredients = post.ingredients.order_by('ingredientName')
@@ -208,3 +238,26 @@ class RecipeLike(View):
             post.likes.add(request.user)
 
         return HttpResponseRedirect(reverse('recipe:recipe_detail', args=[slug]))
+
+
+class YourPostDetail(View):
+
+    def get(self, request, slug, *args, **kwargs):
+        queryset = Post.objects.filter()
+        post = get_object_or_404(queryset, slug=slug)
+        ingredients = post.ingredients.order_by('ingredientName')
+        instructions = post.instructions.order_by('step')
+        liked = False
+        if post.likes.filter(id=self.request.user.id).exists():
+            liked = True
+
+        return render(
+            request,
+            "your_recipe_detail.html",
+            {
+                "post": post,
+                "ingredients": ingredients,
+                "instructions": instructions,
+                "liked": liked,
+            },
+        )
