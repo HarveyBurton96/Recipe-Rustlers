@@ -16,6 +16,7 @@ urlpatterns = [
     path('update_recipe/<slug:slug>', views.UpdateRecipe, name="update_recipe"),
     path('update_instructions/<id>', views.UpdateInstructions, name="update_instructions"),
     path('update_ingredients/<id>', views.UpdateIngredient, name="update_ingredients"),
+    path('update_comment/<id>', views.UpdateComment, name="update_comment"),
     path("your_recipes",  views.YourRecipes.as_view(), name="your_recipes"),
     path('your_recipe/<slug:slug>/', views.YourPostDetail.as_view(), name="your_recipe_detail"),
 

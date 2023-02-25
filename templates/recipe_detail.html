@@ -62,6 +62,9 @@
                 {{ comment.body }}
                 <br>
                 {{ comment.name }}
+                {% if comment.name == user.username %}
+                - <a href="{% url 'recipe:update_comment' comment.id %}">Update</a>
+                {% endif %}
                 <br>
                 {{ comment.created_on }}
                 <br>

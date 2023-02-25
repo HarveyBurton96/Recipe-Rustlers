@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic, View
-from .models import Post, Instruction, Ingredient
+from .models import Post, Instruction, Ingredient, Comment
 from .forms import PostForm, CommentForm, IngredientForm, InstructionForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
@@ -99,7 +99,7 @@ def UpdateInstructions(request, id):
 
     return render(
             request,
-            "update_recipe.html",
+            "update_instruction.html",
             {
                 "post": post,
                 "form": form,
@@ -117,7 +117,25 @@ def UpdateIngredient(request, id):
 
     return render(
             request,
-            "update_recipe.html",
+            "update_ingredients.html",
+            {
+                "post": post,
+                "form": form,
+            },
+        )
+
+
+def UpdateComment(request, id):
+    queryset = Comment.objects
+    post = get_object_or_404(queryset, id=id)
+    form = CommentForm(request.POST or None, instance=post)
+    if form.is_valid():
+        form.save()
+        return redirect('recipe:home')
+
+    return render(
+            request,
+            "update_comment.html",
             {
                 "post": post,
                 "form": form,
