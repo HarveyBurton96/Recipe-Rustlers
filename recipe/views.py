@@ -35,7 +35,6 @@ class LovedRecipes(generic.ListView):
     model = Post
     template_name = "loved_recipes.html"
     paginate_by = 12
-    context_object_name = 'recipe:loved_recipes'
 
     def get_queryset(self):
         user = self.request.user
