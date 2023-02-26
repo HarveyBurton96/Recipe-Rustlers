@@ -39,7 +39,7 @@ class LovedRecipes(generic.ListView):
 
     def get_queryset(self):
         user = self.request.user
-        queryset = user.recipe_likes.all()
+        queryset = Post.objects.filter(likes=user).order_by('title')
         return queryset
 
 
@@ -90,6 +90,8 @@ def SearchRecipe(request):
 def add_recipe(request):
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
+        user = request.user
+        form.instance.author = user
         if form.is_valid():
             form.slug = slugify(form.cleaned_data.get('title'))
             print(form.slug)
