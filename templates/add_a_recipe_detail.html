@@ -5,6 +5,10 @@
     <div class="container top">
         <!-- Post title goes in these h1 tags -->
         <h1 class="post-title centered-text">{{ post.title }}</h1>
+ 
+        <div class="centered-text">
+        <a href="{% url 'recipe:your_recipes' %}" class="btn btn-saved">Save recipe</a>
+    </div>
     </div>
     <div class="row row-cols-1 row-cols-sm-2">
         <div class="col">

@@ -259,6 +259,19 @@ col {
     color: white;
 }
 
+.btn-saved {
+    background-color: #193441;
+    color: white;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-saved:hover {
+    background-color: #3E606F;
+    color: white;
+}
+
 .btn-update-delete {
     background-color: #193441;
     color: white;
