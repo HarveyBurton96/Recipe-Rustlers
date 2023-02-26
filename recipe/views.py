@@ -6,32 +6,14 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.db.models import Count
 from django.utils.text import slugify
-from cloudinary.forms import cl_init_js_callbacks
 
 
+# generic display visits
 class PostList(generic.ListView):
     model = Post
     queryset = Post.objects.filter(status=1).order_by('?')
     template_name = "index.html"
     paginate_by = 12
-
-
-def SearchRecipe(request):
-    if request.method == "POST":
-        searched = request.POST['searched']
-        posts = Post.objects.filter(title__contains=searched)
-        return render(
-            request,
-            "search_recipe.html",
-            {
-                'searched': searched,
-                "posts": posts,
-            })
-    else:
-        return render(
-            request,
-            "search_recipe.html",
-            {})
 
 
 class PopularRecipes(generic.ListView):
@@ -48,6 +30,7 @@ class NewRecipes(generic.ListView):
     paginate_by = 12
 
 
+# personalised display visits
 class LovedRecipes(generic.ListView):
     model = Post
     template_name = "loved_recipes.html"
@@ -71,6 +54,116 @@ class YourRecipes(generic.ListView):
         return queryset
 
 
+class RecipeLike(View):
+
+    def post(self, request, slug):
+        post = get_object_or_404(Post, slug=slug)
+
+        if post.likes.filter(id=request.user.id).exists():
+            post.likes.remove(request.user)
+        else:
+            post.likes.add(request.user)
+
+        return HttpResponseRedirect(reverse('recipe:recipe_detail', args=[slug]))
+
+
+# search visit
+def SearchRecipe(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        posts = Post.objects.filter(title__contains=searched)
+        return render(
+            request,
+            "search_recipe.html",
+            {
+                'searched': searched,
+                "posts": posts,
+            })
+    else:
+        return render(
+            request,
+            "search_recipe.html",
+            {})
+
+
+# add a recipe visit
+def add_recipe(request):
+    if request.method == "POST":
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.slug = slugify(form.cleaned_data.get('title'))
+            print(form.slug)
+            form.save()
+            return redirect('recipe:add_a_recipe_detail', slug=form.slug)
+    else:
+        form = PostForm()
+
+    return render(
+        request,
+        'add_a_recipe.html',
+        {
+            'form': form,
+        },
+    )
+
+
+class add_recipeDetails(View):
+    def get(self, request, slug, *args, **kwargs):
+        queryset = Post.objects.filter()
+        post = get_object_or_404(queryset, slug=slug)
+        ingredients = post.ingredients.order_by('ingredientName')
+        instructions = post.instructions.order_by('step')
+
+        return render(
+            request,
+            "add_a_recipe_detail.html",
+            {
+                "post": post,
+                "ingredients": ingredients,
+                "instructions": instructions,
+                "instruction_form": InstructionForm(),
+                "ingredient_form": IngredientForm(),
+            },
+        )
+
+    def post(self, request, slug, *args, **kwargs):
+        queryset = Post.objects.filter(status=1)
+        post = get_object_or_404(queryset, slug=slug)
+        ingredients = post.ingredients.order_by('ingredientName')
+        instructions = post.instructions.order_by('step')
+
+        ingredient_form = IngredientForm(data=request.POST)
+
+        if ingredient_form.is_valid():
+            ingredient = ingredient_form.save(commit=False)
+            ingredient.recipe = post
+            ingredient.save()
+        else:
+            ingredient_form = IngredientForm()
+
+        instruction_form = InstructionForm(data=request.POST)
+
+        if instruction_form.is_valid():
+            instruction = instruction_form.save(commit=False)
+            instruction.recipe = post
+            instruction.save()
+        else:
+            instruction_form = InstructionForm()
+
+        return render(
+            request,
+            "add_a_recipe_detail.html",
+            {
+                "post": post,
+                "ingredients": ingredients,
+                "instructions": instructions,
+                "instruction_form": InstructionForm(),
+                "ingredient_form": IngredientForm(),
+            },
+        )
+
+
+# Update visits
 def UpdateRecipe(request, slug):
     queryset = Post.objects
     post = get_object_or_404(queryset, slug=slug)
@@ -143,26 +236,7 @@ def UpdateComment(request, id):
         )
 
 
-def add_recipe(request):
-    if request.method == "POST":
-        form = PostForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.slug = slugify(form.cleaned_data.get('title'))
-            print(form.slug)
-            form.save()
-            return redirect('recipe:add_a_recipe_detail', slug=form.slug)
-    else:
-        form = PostForm()
-
-    return render(
-        request,
-        'add_a_recipe.html',
-        {
-            'form': form,
-        },
-    )
-
-
+# delete visits
 def deleteRecipe(request, slug):
     post = Post.objects.get(slug=slug)
     post.delete()
@@ -187,62 +261,7 @@ def deleteComment(request, id):
     return redirect('recipe:home')
 
 
-class add_recipeDetails(View):
-    def get(self, request, slug, *args, **kwargs):
-        queryset = Post.objects.filter()
-        post = get_object_or_404(queryset, slug=slug)
-        ingredients = post.ingredients.order_by('ingredientName')
-        instructions = post.instructions.order_by('step')
-
-        return render(
-            request,
-            "add_a_recipe_detail.html",
-            {
-                "post": post,
-                "ingredients": ingredients,
-                "instructions": instructions,
-                "instruction_form": InstructionForm(),
-                "ingredient_form": IngredientForm(),
-            },
-        )
-
-    def post(self, request, slug, *args, **kwargs):
-        queryset = Post.objects.filter(status=1)
-        post = get_object_or_404(queryset, slug=slug)
-        ingredients = post.ingredients.order_by('ingredientName')
-        instructions = post.instructions.order_by('step')
-
-        ingredient_form = IngredientForm(data=request.POST)
-
-        if ingredient_form.is_valid():
-            ingredient = ingredient_form.save(commit=False)
-            ingredient.recipe = post
-            ingredient.save()
-        else:
-            ingredient_form = IngredientForm()
-
-        instruction_form = InstructionForm(data=request.POST)
-
-        if instruction_form.is_valid():
-            instruction = instruction_form.save(commit=False)
-            instruction.recipe = post
-            instruction.save()
-        else:
-            instruction_form = InstructionForm()
-
-        return render(
-            request,
-            "add_a_recipe_detail.html",
-            {
-                "post": post,
-                "ingredients": ingredients,
-                "instructions": instructions,
-                "instruction_form": InstructionForm(),
-                "ingredient_form": IngredientForm(),
-            },
-        )
-
-
+# generic detailed view visit
 class PostDetail(View):
 
     def get(self, request, slug, *args, **kwargs):
@@ -305,19 +324,7 @@ class PostDetail(View):
         )
 
 
-class RecipeLike(View):
-
-    def post(self, request, slug):
-        post = get_object_or_404(Post, slug=slug)
-
-        if post.likes.filter(id=request.user.id).exists():
-            post.likes.remove(request.user)
-        else:
-            post.likes.add(request.user)
-
-        return HttpResponseRedirect(reverse('recipe:recipe_detail', args=[slug]))
-
-
+# specific detailed view visit
 class YourPostDetail(View):
 
     def get(self, request, slug, *args, **kwargs):
