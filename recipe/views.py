@@ -74,7 +74,7 @@ class YourRecipes(generic.ListView):
 def UpdateRecipe(request, slug):
     queryset = Post.objects
     post = get_object_or_404(queryset, slug=slug)
-    form = PostForm(request.POST or None, instance=post)
+    form = PostForm(request.POST or None, request.FILES or None, instance=post)
     if form.is_valid():
         form.save()
         return redirect('recipe:your_recipes')
@@ -161,6 +161,30 @@ def add_recipe(request):
             'form': form,
         },
     )
+
+
+def deleteRecipe(request, slug):
+    post = Post.objects.get(slug=slug)
+    post.delete()
+    return redirect('recipe:your_recipes')
+
+
+def deleteInstruction(request, id):
+    post = Instruction.objects.get(id=id)
+    post.delete()
+    return redirect('recipe:your_recipes')
+
+
+def deleteIngredient(request, id):
+    post = Ingredient.objects.get(id=id)
+    post.delete()
+    return redirect('recipe:your_recipes')
+
+
+def deleteComment(request, id):
+    post = Comment.objects.get(id=id)
+    post.delete()
+    return redirect('recipe:home')
 
 
 class add_recipeDetails(View):

@@ -5,6 +5,7 @@
 <div class="container top detail-top">
     <h2 class="post-title">{{ post.title }}</h2>
     <p><a href="{% url 'recipe:update_recipe' post.slug %}">Update recipe overview</a></p>
+    - <a href="{% url 'recipe:delete_recipe' post.slug %}">Delete</a>
 
     <div class="row row-cols-1 row-cols-sm-2">
         <div class="col">
@@ -33,7 +34,7 @@
             <h4>Instructions:</h4>
             {% for instruction in instructions %}
             <br>
-            {{ instruction.step }}. {{ instruction.detail }} - <a href="{% url 'recipe:update_instructions' instruction.id %}">Update</a>
+            {{ instruction.step }}. {{ instruction.detail }} - <a href="{% url 'recipe:update_instructions' instruction.id %}">Update</a> - <a href="{% url 'recipe:delete_instruction' instruction.id %}">Delete</a>
             {% endfor %}
         </div>
         <div class="col">
@@ -41,7 +42,7 @@
             <h4>Ingredients:</h4>
             {% for ingredient in ingredients %}
             <br>
-            {{ ingredient.ingredientName }} - {{ ingredient.weight }} {{ ingredient.unit }} - <a href="{% url 'recipe:update_ingredients' ingredient.id %}">Update</a>
+            {{ ingredient.ingredientName }} - {{ ingredient.weight }} {{ ingredient.unit }} - <a href="{% url 'recipe:update_ingredients' ingredient.id %}">Update</a> - <a href="{% url 'recipe:delete_ingredient' ingredient.id %}">Delete</a>
             {% endfor %}
         </div>
     </div>

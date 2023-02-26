@@ -19,5 +19,8 @@ urlpatterns = [
     path('update_comment/<id>', views.UpdateComment, name="update_comment"),
     path("your_recipes",  views.YourRecipes.as_view(), name="your_recipes"),
     path('your_recipe/<slug:slug>/', views.YourPostDetail.as_view(), name="your_recipe_detail"),
-
+    path('delete_comment/<id>', views.deleteComment, name="delete_comment"),
+    path('delete_recipe/<slug:slug>', views.deleteRecipe, name="delete_recipe"),
+    path('delete_instruction/<id>', views.deleteInstruction, name="delete_instruction"),
+    path('delete_ingredient/<id>', views.deleteIngredient, name="delete_ingredient"),
 ]
