@@ -4,101 +4,105 @@
 
 <div class="container top detail-top">
     <h2 class="post-title">{{ post.title }}</h2>
-
-    <div class="row row-cols-1 row-cols-sm-2">
-        <div class="col">
-            <div class="image-container">
-                {% if "no_image" in post.featured_image.url %}
-                <img src="https://www.firstfence.co.uk/images/no-image.jpg" class="card-img-top">
-                {% else %}
-                <img class="card-img-top" src=" {{ post.featured_image.url }}">
-                {% endif %}
-            </div>
-        </div>
-        <div class="col recipe-details">
-            <p>
-                Serving size: {{ post.surving }}
-                <br>
-                {{ post.created_on }}, 
-                <strong>
-                    {% if user.is_authenticated %}
-                    <form action="{% url 'recipe:recipe_like' post.slug %}" method="POST">
-                        {% csrf_token %}
-                        {% if liked %}
-                        <button type="submit" name="recipe_id" value="{{post.slug}}" class="btn-like"><i class="fas fa-heart"></i></button>
-                        {% else %}
-                        <button type="submit" name="recipe_id" value="{{post.slug}}" class="btn-like"><i class="far fa-heart"></i></button>
-                        {% endif %}
-                    </form>
-                    {% else %}
-                    <span class="btn-like">><i class="far fa-heart"></i></span>
-                    {% endif %}
-                    {{ post.number_of_likes }}
-                </strong>
-            </p>
-        </div>
-        <div class="col">
-            <br>
-            <h4>Instructions:</h4>
-            {% for instruction in instructions %}
-            <br>
-            {{ instruction.step }}. {{ instruction.detail }}
-            {% endfor %}
-        </div>
-        <div class="col">
-            <br>
-            <h4>Ingredients:</h4>
-            {% for ingredient in ingredients %}
-            <br>
-            {{ ingredient.ingredientName }} - {{ ingredient.weight }} 
-            {% if ingredient.unit == '-' %}
-             
+</div>
+<div class="centered-text">
+<div class="row row-cols-1 row-cols-sm-2">
+    <div class="col">
+        <div class="image-container">
+            {% if "no_image" in post.featured_image.url %}
+            <img src="https://www.firstfence.co.uk/images/no-image.jpg" class="card-img-top">
             {% else %}
-            {{ ingredient.unit }} 
+            <img class="card-img-top" src=" {{ post.featured_image.url }}">
             {% endif %}
-            {% endfor %}
-        </div>
-        <div class="col">
-            <br>
-            <h4>Comments:</h4>
-            <br>
-            {% for comment in comments %}
-            <p>
-                {{ comment.body }}
-                <br>
-                {{ comment.name }}
-                <br>
-                {{ comment.created_on }}
-                <br>
-                {% if comment.name == user.username %}
-                <a href="{% url 'recipe:update_comment' comment.id %}" class="btn btn-update-delete">Update</a>
-                <a href="{% url 'recipe:delete_comment' comment.id %}" class="btn btn-update-delete">Delete</a>
-                {% endif %}
-                <br>
-            </p>
-            {% endfor %}
-        </div>
-        <div class="col">
-            <div class="card-body">
-                {% if commented %}
-                <div class="alert comment-successful" role="alert">
-                    Your comment has been added!
-                </div>
-                {% else %}
-                {% if user.is_authenticated %}
-                <h3>Leave a comment:</h3>
-                <br>
-                <p>Posting as: {{ user.username }}</p>
-                <form method="post" style="margin-top: 1.3em">
-                    {{ comment_form | crispy }}
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-signup btn-lg">Submit</button>
-                </form>
-                {% endif %}
-                {% endif %}
-            </div>
         </div>
     </div>
+    <div class="col recipe-details">
+        <p>
+            Serving size: {{ post.surving }}
+            <br>
+            Prep: {{ post.prep }} minutes
+            <br>
+            Cook: {{ post.cook }} minutes
+            <br>
+            {{ post.created_on }}
+            <strong>
+                {% if user.is_authenticated %}
+                <form action="{% url 'recipe:recipe_like' post.slug %}" method="POST">
+                    {% csrf_token %}
+                    {% if liked %}
+                    <button type="submit" name="recipe_id" value="{{post.slug}}" class="btn-like"><i class="fas fa-heart"></i></button>
+                    {% else %}
+                    <button type="submit" name="recipe_id" value="{{post.slug}}" class="btn-like"><i class="far fa-heart"></i></button>
+                    {% endif %}
+                </form>
+                {% else %}
+                <span class="btn-like">><i class="far fa-heart"></i></span>
+                {% endif %}
+                {{ post.number_of_likes }}
+            </strong>
+        </p>
+    </div>
+    <div class="col">
+        <br>
+        <h4>Instructions:</h4>
+        {% for instruction in instructions %}
+        <br>
+        {{ instruction.step }}. {{ instruction.detail }}
+        {% endfor %}
+    </div>
+    <div class="col">
+        <br>
+        <h4>Ingredients:</h4>
+        {% for ingredient in ingredients %}
+        <br>
+        {{ ingredient.ingredientName }} - {{ ingredient.weight }} 
+        {% if ingredient.unit == '-' %}
+         
+        {% else %}
+        {{ ingredient.unit }} 
+        {% endif %}
+        {% endfor %}
+    </div>
+    <div class="col">
+        <br>
+        <h4>Comments:</h4>
+        <br>
+        {% for comment in comments %}
+        <p>
+            {{ comment.body }}
+            <br>
+            {{ comment.name }}
+            <br>
+            {{ comment.created_on }}
+            <br>
+            {% if comment.name == user.username %}
+            <a href="{% url 'recipe:update_comment' comment.id %}" class="btn btn-update-delete">Update</a>
+            <a href="{% url 'recipe:delete_comment' comment.id %}" class="btn btn-update-delete">Delete</a>
+            {% endif %}
+        </p>
+        {% endfor %}
+    </div>
+    <div class="col">
+        <div class="card-body">
+            {% if commented %}
+            <div class="alert comment-successful" role="alert">
+                Your comment has been added!
+            </div>
+            {% else %}
+            {% if user.is_authenticated %}
+            <h3>Leave a comment:</h3>
+            <br>
+            <p>Posting as: {{ user.username }}</p>
+            <form method="post" style="margin-top: 1.3em">
+                {% csrf_token %}
+                {{ comment_form | crispy }}
+                <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+            </form>
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</div>
 </div>
 
 {% endblock content %}

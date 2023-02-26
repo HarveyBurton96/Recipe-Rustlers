@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+
 {% if searched %}
 <h2 class="text-center top-style">You searched for {{ searched }}</h2>
 {% else %}
@@ -32,7 +33,7 @@
                             {% elif post.dish == 4 %}
                             Dessert
                             {% endif %}
-                            <br>Prep: {{ post.prep }}, Cook: {{ post.cook }}<br>Author: {{ post.author }}<br>{{ post.created_on}} 
+                            <br>Prep: {{ post.prep }} minutes, Cook: {{ post.cook }} minutes<br>Author: {{ post.author }}<br>{{ post.created_on}} 
                             <i class="far fa-heart"></i>
                             {{ post.number_of_likes }}
                         </p>

@@ -1,17 +1,20 @@
 {% extends "base.html" %} 
 {% block content %}
 {% load crispy_forms_tags %}
+
 <div class="top">
-<h1 class="centered-text">Add a recipe</h1>
+    <h1 class="centered-text">Add a recipe</h1>
 </div>
-    <p class="centered-text">First lets add the basics of the recipe don't worry the ingredients and instructions are entered on the next page one this form is filled out.</p>
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="form-style">
-            {{ form | crispy }}
-    
+<p class="centered-text">
+    First lets add the basics of the recipe don't worry the ingredients and 
+    instructions are entered on the next page one this form is filled out.
+    </p>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-style">
+        {{ form | crispy }}
         <input type="submit" value="Submit" class="btn btn-signup">
     </div>
-    </form>
+</form>
 
 {%endblock%}

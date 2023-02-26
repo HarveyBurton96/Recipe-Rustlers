@@ -29,9 +29,6 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'recipe:add_recipe' %}">Add a recipe</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="{% url 'recipe:new_recipe' %}">New recipes</a>
           </li>
           <li class="nav-item">
@@ -40,6 +37,9 @@
           {% if user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'recipe:loved_recipes' %}">Your hearted recipes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'recipe:add_recipe' %}">Add a recipe</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'recipe:your_recipes' %}">Your recipes</a>

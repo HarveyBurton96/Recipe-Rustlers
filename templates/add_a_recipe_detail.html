@@ -1,80 +1,83 @@
 {% extends 'base.html' %} {% block content %}
 {% load crispy_forms_tags %}
 
-
-    <div class="container top">
-        <!-- Post title goes in these h1 tags -->
-        <h1 class="post-title centered-text">{{ post.title }}</h1>
- 
-        <div class="centered-text">
+<div class="container top">
+    <h1 class="post-title centered-text">{{ post.title }}</h1>
+    <div class="centered-text">
         <a href="{% url 'recipe:your_recipes' %}" class="btn btn-saved">Save recipe</a>
     </div>
-    </div>
-    <div class="row row-cols-1 row-cols-sm-2">
-        <div class="col">
-            <div class="image-container">
-                {% if "no_image" in post.featured_image.url %}
-                <img src="https://www.firstfence.co.uk/images/no-image.jpg" class="card-img-top">
-                {% else %}
-                <img class="card-img-top" src=" {{ post.featured_image.url }}">
-                {% endif %}
-            </div>
-        </div>
-        <div class="col recipe-details centered-text">
-            Serving size: {{ post.surving }}
-            <br>
-            {{ post.created_on }}
-        </div>
-    </div>
-    <br>
-    <h4 class="centered-text">Ingredients:</h4>
-    <div class="row row-cols-1 row-cols-lg-2">
-        <div class="col">
-            <div class="card-body">
-                {% if user.is_authenticated %}
-                <form method="post">
-                    <div class="form-style">
-                    {{ ingredient_form | crispy }}
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-signup btn-lg">Add +</button>
-                    </div>
-                </form>
-                {% endif %}
-            </div>
-        </div>
-        <div class="col centered-text padded-text">
-            {% for ingredient in ingredients %}
-            {{ ingredient.ingredientName }} - {{ ingredient.weight }} 
-            {% if ingredient.unit == '-' %}
-             
+</div>
+
+<div class="row row-cols-1 row-cols-sm-2">
+    <div class="col">
+        <div class="image-container">
+            {% if "no_image" in post.featured_image.url %}
+            <img src="https://www.firstfence.co.uk/images/no-image.jpg" class="card-img-top">
             {% else %}
-            {{ ingredient.unit }} 
+            <img class="card-img-top" src=" {{ post.featured_image.url }}">
             {% endif %}
-            <br>
-            {% endfor %}
         </div>
     </div>
-    <br>
-    <h4 class="centered-text">Instructions:</h4>
-    <div class="row row-cols-1 row-cols-lg-2">
-        <div class="col">
-            <div class="card-body">
-                {% if user.is_authenticated %}
-                <form method="post">
-                    <div class="form-style">
-                    {{ instruction_form | crispy }}
-                    {% csrf_token %}
+    <div class="col recipe-details centered-text">
+        Serving size: {{ post.surving }}
+        <br>
+        Prep: {{ post.prep }} minutes
+        <br>
+        Cook: {{ post.cook }} minutes
+        <br>
+        {{ post.created_on }}
+    </div>
+</div>
+<br>
+<h4 class="centered-text">Ingredients:</h4>
+<div class="row row-cols-1 row-cols-lg-2">
+    <div class="col">
+        <div class="card-body">
+            {% if user.is_authenticated %}
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-style">
+                    {{ ingredient_form | crispy }}
                     <button type="submit" class="btn btn-signup btn-lg">Add +</button>
-                    </div>
-                </form>
-                {% endif %}
-            </div>
-        </div>
-        <div class="col centered-text padded-text">
-            {% for instruction in instructions %}
-            {{ instruction.step }}. {{ instruction.detail }}
-            <br>
-            {% endfor %}
+                </div>
+            </form>
+            {% endif %}
         </div>
     </div>
+    <div class="col centered-text padded-text">
+        {% for ingredient in ingredients %}
+        {{ ingredient.ingredientName }} - {{ ingredient.weight }} 
+        {% if ingredient.unit == '-' %}
+         
+        {% else %}
+        {{ ingredient.unit }} 
+        {% endif %}
+        <br>
+        {% endfor %}
+    </div>
+</div>
+<br>
+<h4 class="centered-text">Instructions:</h4>
+<div class="row row-cols-1 row-cols-lg-2">
+    <div class="col">
+        <div class="card-body">
+            {% if user.is_authenticated %}
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-style">
+                    {{ instruction_form | crispy }}
+                    <button type="submit" class="btn btn-signup btn-lg">Add +</button>
+                </div>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col centered-text padded-text">
+        {% for instruction in instructions %}
+        {{ instruction.step }}. {{ instruction.detail }}
+        <br>
+        {% endfor %}
+    </div>
+</div>
+
 {% endblock content %}

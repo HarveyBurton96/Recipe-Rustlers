@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="top">
-<h1 class="centered-text">Your Recipes</h1>
+    <h1 class="centered-text">Your Recipes</h1>
 </div>
 <div class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
@@ -16,32 +16,31 @@
                     <img class="card-img-top" src=" {{ post.featured_image.url }}">
                     {% endif %}
                 </div>
-                    <div class="card-body">
-                        <a href="{% url 'recipe:your_recipe_detail' post.slug %}"><h5 class="card-title">{{ post.title }}</h5></a>
-                        <p class="card-text">Dish: 
-                            {% if post.dish == 0 %}
-                            Breakfast
-                            {% elif post.dish == 1 %} 
-                            Lunch
-                            {% elif post.dish == 2 %}
-                            Snack
-                            {% elif post.dish == 3 %}
-                            Dinner
-                            {% elif post.dish == 4 %}
-                            Dessert
-                            {% endif %}
-                            <br>Prep: {{ post.prep }}, Cook: {{ post.cook }}<br>Author: {{ post.author }}<br>{{ post.created_on}} 
-                            <i class="far fa-heart"></i>
-                            {{ post.number_of_likes }}
-                            <br>Status: 
-                            {% if post.status == 0 %}
-                            Draft
-                            {% elif post.status == 1 %} 
-                            Published
-                            {% endif %}
-                        </p>
-                    </div>
-
+                <div class="card-body">
+                    <a href="{% url 'recipe:your_recipe_detail' post.slug %}"><h5 class="card-title">{{ post.title }}</h5></a>
+                    <p class="card-text">Dish: 
+                        {% if post.dish == 0 %}
+                        Breakfast
+                        {% elif post.dish == 1 %} 
+                        Lunch
+                        {% elif post.dish == 2 %}
+                        Snack
+                        {% elif post.dish == 3 %}
+                        Dinner
+                        {% elif post.dish == 4 %}
+                        Dessert
+                        {% endif %}
+                        <br>Prep: {{ post.prep }} minutes, Cook: {{ post.cook }} minutes<br>Author: {{ post.author }}<br>{{ post.created_on}} 
+                        <i class="far fa-heart"></i>
+                        {{ post.number_of_likes }}
+                        <br>Status: 
+                        {% if post.status == 0 %}
+                        Draft
+                        {% elif post.status == 1 %} 
+                        Published
+                        {% endif %}
+                    </p>
+                </div>
             </div>
         </div>
         {% endfor %}

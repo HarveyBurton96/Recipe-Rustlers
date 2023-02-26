@@ -3,17 +3,16 @@
 {% load crispy_forms_tags %}
 
 <div class="top">
-<h1 class="centered-text">Update Ingredient</h1>
+    <h1 class="centered-text">Update Ingredient</h1>
 </div>
 <br>
 <form method="POST">
     {% csrf_token %}
     <div class="form-style">
         {{ form | crispy }}
-    <br>
-    <input type="submit" value="Update" class="btn btn-update">
+        <br>
+        <input type="submit" value="Update" class="btn btn-update">
     </div>
 </form>
-
 
 {%endblock%}

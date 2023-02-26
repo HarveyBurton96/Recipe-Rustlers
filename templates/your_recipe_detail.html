@@ -6,62 +6,66 @@
     <h2 class="post-title">{{ post.title }}</h2>
     <a href="{% url 'recipe:update_recipe' post.slug %}" class="btn btn-update">Update recipe overview</a>
     <br>
-   <a href="{% url 'recipe:delete_recipe' post.slug %}" class="btn btn-update">Delete</a>
-
-    <div class="row row-cols-1 row-cols-sm-2">
-        <div class="col">
-            <div class="image-container">
-                {% if "no_image" in post.featured_image.url %}
-                <img src="https://www.firstfence.co.uk/images/no-image.jpg" class="card-img-top">
-                {% else %}
-                <img class="card-img-top" src=" {{ post.featured_image.url }}">
-                {% endif %}
-            </div>
-        </div>
-        <div class="col recipe-details">
-            <p>
-                Serving size: {{ post.surving }}
-                <br>
-                {{ post.created_on }}, 
-                <strong>
-                    <span class="btn-like"><i class="far fa-heart"></i></span>
-                    {{ post.number_of_likes }}
-                </strong>
-            </p>
-        </div>
-    </div>
-        <a href="{% url 'recipe:add_a_recipe_detail' post.slug %}" class="btn btn-add-update upper">Add Instructions or Ingredients</a>
-    <div class="row row-cols-1 row-cols-lg-2">
-        <div class="col upper">
-            <h4>Instructions:</h4>
-            {% for instruction in instructions %}
-            
-            {{ instruction.step }}. {{ instruction.detail }} 
-            <br>
-            <a href="{% url 'recipe:update_instructions' instruction.id %}" class="btn btn-update-delete">Update</a><a href="{% url 'recipe:delete_instruction' instruction.id %}" class="btn btn-update-delete">Delete</a>
-            <br>
-            <br>
-            {% endfor %}
-            
-        </div>
-        <br>
-        <div class="col">
-            <h4>Ingredients:</h4>
-            {% for ingredient in ingredients %}
-            
-            {{ ingredient.ingredientName }} - {{ ingredient.weight }} 
-            {% if ingredient.unit == '-' %}
-             
+    <a href="{% url 'recipe:delete_recipe' post.slug %}" class="btn btn-update">Delete</a>
+</div>
+<div class="centered-text">
+<div class="row row-cols-1 row-cols-sm-2">
+    <div class="col">
+        <div class="image-container">
+            {% if "no_image" in post.featured_image.url %}
+            <img src="https://www.firstfence.co.uk/images/no-image.jpg" class="card-img-top">
             {% else %}
-            {{ ingredient.unit }} 
+            <img class="card-img-top" src=" {{ post.featured_image.url }}">
             {% endif %}
-            <a href="{% url 'recipe:update_ingredients' ingredient.id %}" class="btn btn-update-delete">Update</a>
-            <a href="{% url 'recipe:delete_ingredient' ingredient.id %}" class="btn btn-update-delete">Delete</a>
-            <br>
-            <br>
-            {% endfor %}
         </div>
     </div>
+    <div class="col recipe-details">
+        <p>
+            Serving size: {{ post.surving }}
+            <br>
+            {{ post.created_on }}
+            <br>
+            Prep: {{ post.prep }} minutes
+            <br>
+            Cook: {{ post.cook }} minutes
+            <br>
+            <strong>
+                <span class="btn-like"><i class="far fa-heart"></i></span>
+                {{ post.number_of_likes }}
+            </strong>
+        </p>
+    </div>
+</div>
+<a href="{% url 'recipe:add_a_recipe_detail' post.slug %}" class="btn btn-add-update upper">Add Instructions or Ingredients</a>
+<div class="row row-cols-1 row-cols-lg-2">
+    <div class="col upper">
+        <h4>Instructions:</h4>
+        {% for instruction in instructions %}
+         
+        {{ instruction.step }}. {{ instruction.detail }} 
+        <br>
+        <a href="{% url 'recipe:update_instructions' instruction.id %}" class="btn btn-update-delete">Update</a><a href="{% url 'recipe:delete_instruction' instruction.id %}" class="btn btn-update-delete">Delete</a>
+        <br>
+        <br>
+        {% endfor %}
+    </div>
+    <br>
+    <div class="col">
+        <h4>Ingredients:</h4>
+        {% for ingredient in ingredients %}
+        {{ ingredient.ingredientName }} - {{ ingredient.weight }} 
+        {% if ingredient.unit == '-' %}
+         
+        {% else %}
+        {{ ingredient.unit }} 
+        {% endif %}
+        <a href="{% url 'recipe:update_ingredients' ingredient.id %}" class="btn btn-update-delete">Update</a>
+        <a href="{% url 'recipe:delete_ingredient' ingredient.id %}" class="btn btn-update-delete">Delete</a>
+        <br>
+        <br>
+        {% endfor %}
+    </div>
+</div>
 </div>
 
 {% endblock content %}
