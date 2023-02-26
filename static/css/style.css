@@ -1,25 +1,19 @@
-.form-length {
-    width: 280.2px;
-}
-
-.image-collage {
-    margin-top: 76px;
-}
-
-.image-second {
-    margin-top: 24px;
-}
-
-/* This is the base.html styles*/
-
+/* General styles */
 .top {
     margin-top: 100px;
 }
 
-.footer-style {
-    background-color: #193441;
-    color: white;
-    padding-top: 15px;
+body {
+    height: 100%;
+    background-color: #91AA9D;
+}
+
+.top-style {
+    margin-top: 85px;
+}
+
+.centered-text {
+    text-align: center;
 }
 
 .main-style {
@@ -30,6 +24,43 @@
     color: black;
 }
 
+li {
+    list-style-type: none;
+}
+
+col {
+    padding: 0;
+}
+
+/* Recipe detail style */
+.btn-like {
+    background-color: #91AA9D;
+    color: black;
+    border: None;
+}
+
+.padded-text {
+    padding: 16px;
+}
+
+.recipe-details {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.comment-successful {
+    background-color: #3E606F;
+    color: white;
+}
+
+/* footer style */
+.footer-style {
+    background-color: #193441;
+    color: white;
+    padding-top: 15px;
+}
+
+/* navbar style */
 .navbar {
     padding: 0;
     height: 80px;
@@ -48,11 +79,6 @@
     margin-right: 0;
 }
 
-a {
-    text-decoration: none;
-    color: white;
-}
-
 .nav-link {
     text-decoration: none;
     color: white;
@@ -63,10 +89,6 @@ a {
     background-color: #3E606F;
 }
 
-a:hover {
-    color: #3E606F;
-}
-
 .nav-item {
     text-align: center;
 }
@@ -75,67 +97,13 @@ a:hover {
     margin-top: 7px;
 }
 
-/* Index page */
-
-.card {
-    background-color: #193441;
-    margin-top: 7px;
-    color: white;
-}
-
-.card-title:hover {
-    text-decoration: underline;
-    color: white;   
-}
-
-.top-style {
-    margin-top: 85px;
-}
-
-.page-link {
+a {
     text-decoration: none;
-    border: black;
-    background-color: #193441;
-    color: white;  
-}
-
-.page-link:hover {
-    background-color: #3E606F;
-    color: black;
-}
-
-.pagination {
-    margin-top: 10px;
-    margin-bottom: 7.5px;
-}
-
-body {
-    height: 100%;
-    background-color: #91AA9D;
-}
-
-.login-style {
-    margin-left: 25%;
-}
-
-.button {
-    background-color: #193441;
     color: white;
 }
 
-.button:hover {
-    background-color: #3E606F;
-    color: black;
-}
-
-.text-link {
-    text-decoration: underline;
-}
-
-.btn-like {
-    background-color: #91AA9D;
-    color: black;
-    border: None;
+a:hover {
+    color: #3E606F;
 }
 
 .search-box {
@@ -169,11 +137,25 @@ body {
     color: white;
 }
 
-@media (max-width:992px) {
-    .search-box {
-        position: relative;
-        text-align: center;
-    }
+/* Index page */
+.image-collage {
+    margin-top: 76px;
+}
+
+.image-second {
+    margin-top: 24px;
+}
+
+/* card style */
+.card {
+    background-color: #193441;
+    margin-top: 7px;
+    color: white;
+}
+
+.card-title:hover {
+    text-decoration: underline;
+    color: white;   
 }
 
 .image-container {
@@ -190,51 +172,42 @@ body {
     object-fit: cover;
 }
 
-@media (max-width:1399px) {
-    .image-container {
-        width: 259px;
-    }
+/* pagination style */
+.page-link {
+    text-decoration: none;
+    border: black;
+    background-color: #193441;
+    color: white;  
 }
 
-@media (max-width:1199px) {
-    .image-container {
-        width: 214px;
-    }
-}
-
-@media (max-width:767px) {
-    .image-container {
-        width: 244px;
-    }
-}
-
-@media (max-width:575px) {
-    .image-container {
-        width: 100%;
-        height: 100%;
-    }
-}
-
-.detail-top {
-    text-align: center;
-}
-
-li {
-    list-style-type: none;
-}
-
-col {
-    padding: 0;
-}
-
-.recipe-details {
-    margin-top: auto;
-    margin-bottom: auto;
-}
-
-.comment-successful {
+.page-link:hover {
     background-color: #3E606F;
+    color: black;
+}
+
+.pagination {
+    margin-top: 10px;
+    margin-bottom: 7.5px;
+}
+
+/* login, logout, and sign up style*/
+.login-style {
+    margin-left: 25%;
+}
+
+.text-link {
+    text-decoration: underline;
+}
+
+/* button styles */
+.button {
+    background-color: #193441;
     color: white;
+}
+
+.button:hover {
+    background-color: #3E606F;
+    color: black;
 }
 
 .btn-update {
@@ -252,6 +225,7 @@ col {
     background-color: #193441;
     color: white;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .btn-add-update:hover {
@@ -295,6 +269,7 @@ col {
     color: white;
 }
 
+/* form style */
 .form-control-long {
     width: 300px;
 }
@@ -315,9 +290,46 @@ col {
     margin-left: 20%;
 }
 
+.asteriskField {
+    display: none;
+}
+
+/* media queries */
+@media (max-width:1399px) {
+    .image-container {
+        width: 259px;
+    }
+}
+
+@media (max-width:1199px) {
+    .image-container {
+        width: 214px;
+    }
+}
+
+@media (max-width:992px) {
+    .search-box {
+        position: relative;
+        text-align: center;
+    }
+}
+
+@media (max-width:767px) {
+    .image-container {
+        width: 244px;
+    }
+}
+
 @media (max-width:600px) {
     .form-style {
         margin-left: 10%;
+    }
+}
+
+@media (max-width:575px) {
+    .image-container {
+        width: 100%;
+        height: 100%;
     }
 }
 
@@ -328,31 +340,15 @@ col {
     }
 }
 
-@media (max-width:350px) {
-    .form-style {
-        margin-left: 1px;
-        margin-right: 5px;
-    }
-}
-
-.centered-text {
-    text-align: center;
-}
-
 @media (max-width:363px) {
     .main-style {
         margin-bottom: 95px;
     }
 }
 
-.asteriskField {
-    display: none;
-}
-
-.padded-text {
-    padding: 16px;
-}
-
-.upper {
-    margin-bottom: 10px;
+@media (max-width:350px) {
+    .form-style {
+        margin-left: 1px;
+        margin-right: 5px;
+    }
 }

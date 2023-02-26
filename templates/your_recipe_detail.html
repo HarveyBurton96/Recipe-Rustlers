@@ -2,7 +2,7 @@
 {% block content %}
 
 
-<div class="container top detail-top">
+<div class="container top centered-text">
     <h2 class="post-title">{{ post.title }}</h2>
     <a href="{% url 'recipe:update_recipe' post.slug %}" class="btn btn-update">Update recipe overview</a>
     <br>
@@ -36,7 +36,7 @@
         </p>
     </div>
 </div>
-<a href="{% url 'recipe:add_a_recipe_detail' post.slug %}" class="btn btn-add-update upper">Add Instructions or Ingredients</a>
+<a href="{% url 'recipe:add_a_recipe_detail' post.slug %}" class="btn btn-add-update">Add Instructions or Ingredients</a>
 <div class="row row-cols-1 row-cols-lg-2">
     <div class="col upper">
         <h4>Instructions:</h4>
