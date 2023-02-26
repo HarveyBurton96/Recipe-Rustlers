@@ -8,7 +8,8 @@
 <p class="centered-text">
     First lets add the basics of the recipe don't worry the ingredients and 
     instructions are entered on the next page one this form is filled out.
-    </p>
+</p>
+{% if user.is_authenticated %}
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form-style">
@@ -16,5 +17,6 @@
         <input type="submit" value="Submit" class="btn btn-signup">
     </div>
 </form>
+{% endif %}
 
 {%endblock%}

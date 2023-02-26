@@ -5,6 +5,7 @@
 <div class="top">
     <h1 class="centered-text">Update Comment</h1>
 </div>
+{% if user.is_authenticated %}
 <form method="POST">
     {% csrf_token %}
     <div class="form-style">
@@ -13,5 +14,6 @@
         <input type="submit" value="Update" class="btn btn-update">
     </div>
 </form>
+{% endif %}
 
 {%endblock%}

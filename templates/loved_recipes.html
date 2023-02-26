@@ -1,13 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-
 <h2 class="text-center top-style">Your Loved Recipes</h2>
-
-{% if user.is_authenticated %}
-
-
-
 
 <div class="container">
     <div class="row row-cols-4">
@@ -62,9 +56,6 @@
         {% endif %}
     </ul>
 </nav>
-{% endif %}
-{% endif %}
-
-                  
+{% endif %}       
 
 {%endblock%}
