@@ -31,7 +31,7 @@
                         {% endif %}
                     </form>
                     {% else %}
-                    <span class="text-secondary">><i class="far fa-heart"></i></span>
+                    <span class="btn-like">><i class="far fa-heart"></i></span>
                     {% endif %}
                     {{ post.number_of_likes }}
                 </strong>
@@ -50,7 +50,12 @@
             <h4>Ingredients:</h4>
             {% for ingredient in ingredients %}
             <br>
-            {{ ingredient.ingredientName }} - {{ ingredient.weight }} {{ ingredient.unit }}
+            {{ ingredient.ingredientName }} - {{ ingredient.weight }} 
+            {% if ingredient.unit == '-' %}
+             
+            {% else %}
+            {{ ingredient.unit }} 
+            {% endif %}
             {% endfor %}
         </div>
         <div class="col">
@@ -62,12 +67,13 @@
                 {{ comment.body }}
                 <br>
                 {{ comment.name }}
-                {% if comment.name == user.username %}
-                - <a href="{% url 'recipe:update_comment' comment.id %}">Update</a>
-                - <a href="{% url 'recipe:delete_comment' comment.id %}">Delete</a>
-                {% endif %}
                 <br>
                 {{ comment.created_on }}
+                <br>
+                {% if comment.name == user.username %}
+                <a href="{% url 'recipe:update_comment' comment.id %}" class="btn btn-update-delete">Update</a>
+                <a href="{% url 'recipe:delete_comment' comment.id %}" class="btn btn-update-delete">Delete</a>
+                {% endif %}
                 <br>
             </p>
             {% endfor %}

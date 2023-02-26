@@ -40,7 +40,12 @@
         </div>
         <div class="col centered-text padded-text">
             {% for ingredient in ingredients %}
-            {{ ingredient.ingredientName }} - {{ ingredient.weight }} {{ ingredient.unit }}
+            {{ ingredient.ingredientName }} - {{ ingredient.weight }} 
+            {% if ingredient.unit == '-' %}
+             
+            {% else %}
+            {{ ingredient.unit }} 
+            {% endif %}
             <br>
             {% endfor %}
         </div>

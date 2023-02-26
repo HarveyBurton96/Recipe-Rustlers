@@ -4,8 +4,9 @@
 
 <div class="container top detail-top">
     <h2 class="post-title">{{ post.title }}</h2>
-    <p><a href="{% url 'recipe:update_recipe' post.slug %}">Update recipe overview</a></p>
-    - <a href="{% url 'recipe:delete_recipe' post.slug %}">Delete</a>
+    <a href="{% url 'recipe:update_recipe' post.slug %}" class="btn btn-update">Update recipe overview</a>
+    <br>
+   <a href="{% url 'recipe:delete_recipe' post.slug %}" class="btn btn-update">Delete</a>
 
     <div class="row row-cols-1 row-cols-sm-2">
         <div class="col">
@@ -23,26 +24,41 @@
                 <br>
                 {{ post.created_on }}, 
                 <strong>
-                    <span class="text-secondary"><i class="far fa-heart"></i></span>
+                    <span class="btn-like"><i class="far fa-heart"></i></span>
                     {{ post.number_of_likes }}
                 </strong>
             </p>
         </div>
-        <a href="{% url 'recipe:add_a_recipe_detail' post.slug %}">Update</a>
-        <div class="col">
-            <br>
+    </div>
+        <a href="{% url 'recipe:add_a_recipe_detail' post.slug %}" class="btn btn-add-update upper">Add Instructions or Ingredients</a>
+    <div class="row row-cols-1 row-cols-lg-2">
+        <div class="col upper">
             <h4>Instructions:</h4>
             {% for instruction in instructions %}
+            
+            {{ instruction.step }}. {{ instruction.detail }} 
             <br>
-            {{ instruction.step }}. {{ instruction.detail }} - <a href="{% url 'recipe:update_instructions' instruction.id %}">Update</a> - <a href="{% url 'recipe:delete_instruction' instruction.id %}">Delete</a>
+            <a href="{% url 'recipe:update_instructions' instruction.id %}" class="btn btn-update-delete">Update</a><a href="{% url 'recipe:delete_instruction' instruction.id %}" class="btn btn-update-delete">Delete</a>
+            <br>
+            <br>
             {% endfor %}
+            
         </div>
+        <br>
         <div class="col">
-            <br>
             <h4>Ingredients:</h4>
             {% for ingredient in ingredients %}
+            
+            {{ ingredient.ingredientName }} - {{ ingredient.weight }} 
+            {% if ingredient.unit == '-' %}
+             
+            {% else %}
+            {{ ingredient.unit }} 
+            {% endif %}
+            <a href="{% url 'recipe:update_ingredients' ingredient.id %}" class="btn btn-update-delete">Update</a>
+            <a href="{% url 'recipe:delete_ingredient' ingredient.id %}" class="btn btn-update-delete">Delete</a>
             <br>
-            {{ ingredient.ingredientName }} - {{ ingredient.weight }} {{ ingredient.unit }} - <a href="{% url 'recipe:update_ingredients' ingredient.id %}">Update</a> - <a href="{% url 'recipe:delete_ingredient' ingredient.id %}">Delete</a>
+            <br>
             {% endfor %}
         </div>
     </div>

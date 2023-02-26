@@ -237,6 +237,39 @@ col {
     color: white;
 }
 
+.btn-update {
+    background-color: #193441;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.btn-update:hover {
+    background-color: #3E606F;
+    color: white;
+}
+
+.btn-add-update {
+    background-color: #193441;
+    color: white;
+    margin-top: 10px;
+}
+
+.btn-add-update:hover {
+    background-color: #3E606F;
+    color: white;
+}
+
+.btn-update-delete {
+    background-color: #193441;
+    color: white;
+    margin-left: 10px;
+}
+
+.btn-update-delete:hover {
+    background-color: #3E606F;
+    color: white;
+}
+
 .btn-signup {
     background-color: #193441;
     color: white;
@@ -305,4 +338,8 @@ col {
 
 .padded-text {
     padding: 16px;
+}
+
+.upper {
+    margin-bottom: 10px;
 }

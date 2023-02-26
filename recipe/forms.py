@@ -19,6 +19,7 @@ class PostForm(ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control-long'}),
             'featured_image': forms.FileInput(attrs={'class': 'form-control-long'}),
+            'author': forms.Select(attrs={'class': 'form-control-long'}),
             'status': forms.Select(attrs={'class': 'form-control-medium'}),
             'surving': forms.NumberInput(attrs={'class': 'form-control-short'}),
             'dish': forms.Select(attrs={'class': 'form-control-medium'}),
