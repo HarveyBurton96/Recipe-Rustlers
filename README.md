@@ -121,3 +121,14 @@ Before i started creating the website i created 3 mockups to set out my style an
     - #### Update comment
         - If the user clicks to update their comment they are taken to a new page. Here the comment is filled out so the user can edit an indivdual part of their comment instead of having to write the entier comment again. They then select 'Update' and are taken back to the home page. 
         ![Update comment image](documentation/website_images/Update_comment.png)
+
+- ### Add a recipe 
+    - This page allows a signed in user to add their own recipe. One this page they first fill out the overview information. 
+    - They fill out the title explaining what the recipe is. 
+    - The image is next if no image is uploaded then a filler 'no-image' is displayed for the recipe.
+    - Status is the option between 'Draft' and 'Published'. If 'Draft' is selected then the recipe is no visable to the other user of the website. If 'Published' is selected then the recipe is shown like the other published recipes. 
+    - Survings is to explain how many the recipe will feed.
+    - Dish is an option between: 'Breakfast', 'Lunch', 'Snack', 'Dinner', and 'Dessert'. This helps other users to know what a recipe is for. 
+    - Finally is prep and cook time in minutes. 
+    - The submit button takes the user to the next page for the ingredient and instruction sections.
+    ![Add a recipe image](documentation/website_images/add_a_recipe.png) 

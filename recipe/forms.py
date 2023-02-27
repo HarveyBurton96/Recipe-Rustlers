@@ -25,6 +25,11 @@ class PostForm(ModelForm):
             'cook': forms.NumberInput(attrs={'class': 'form-control-short'}),
         }
 
+        labels = {
+            'prep': 'Prep (minutes)',
+            'cook': 'Cook (minutes)',
+        }
+
 
 class CommentForm(forms.ModelForm):
     class Meta:
