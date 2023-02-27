@@ -72,3 +72,52 @@ Before i started creating the website i created 3 mockups to set out my style an
         - When the user hovers over one of the social media accounts the logo chnages colour to show the user which website they will go to. 
         - As these links are not part of our website when clicked they will open in a different tab allowing the user to still remain on our website.
         ![footer image](documentation/website_images/footer.png)
+
+- ### Home page
+    - #### Hero images
+        - This is positioned just underneth the Navbar. It is a collage of bright and colourful pictures of images. 
+        - These images should peak the users interest for more taste recipes and keep them on the site.
+        ![Hero images](documentation/website_images/Hero_images.png)
+
+    - #### Title and ethos
+        - The title and ethos introdueces the user the the website. It also explains why this website excits and includes the company slogan.
+        ![Home title image](documentation/website_images/Home_title.png)
+    
+    - #### Twelve random recipes
+        - This part of the homepage loads twelve random recipes to give the user an overview of the type of recipes on the site. 
+        - Each of the twelve recipes are in an individual card showing the overall information e.g the image, title, dish type, prep and cooking time, author, date recipe was created, and number of likes. This allows the user to quickly get an impresson of each of the recipes shown. 
+        ![Home twelve recipes image](documentation/website_images/home_twelve_recipes.png)
+
+- ### New recipes 
+    - This page orders all recipes added to the website by the most recent to earliest. 
+    - This page has a pagination of 12 as to not overload the user and displays a next and previous button at the bottom of the page when appropriate.
+    ![New recipes page image](documentation/website_images/New_recipe.png)
+
+- ### Popular recipes
+    - This page orders all recipes added to the website by the most likes. 
+    - This page has a pagination of 12 as to not overload the user and displays a next and previous button at the bottom of the page when appropriate.
+    ![Popular recipes page image](documentation/website_images/Loved_recipe.png)
+
+- ### Hearted recipes
+    - This page is only shown to users logged in. It shows a list of recipies they have liked so they can easily find recipes they have enjoyed. 
+    - The recipes on this page are organised by title.
+    - This page has a pagination of 12 as to not overload the user and displays a next and previous button at the bottom of the page when appropriate. As this account has only liked five recipes the next button has not appeared.
+
+        ![Hearted recipes page image](documentation/website_images/hearted_recipes.png)
+
+- ### Recipe details
+    - This page shows when a user clicks on a recipe title. 
+    - This then displays the overview information along with the instructions and ingredients for the recipe. 
+    - At the bottom of the page the comments are recorded. They show the comment, poster and the date the comment was posted. It is ordered by the earliest comment posted to latest comment. This allows the user to read the comments as they were written. 
+    - The ability to post a comment is next to the comments however this only appears when the user is logged into their account. 
+    - If the user post a comment the comment will have two buttons below it one to update their comment and one to delete there comment. This means if they whish to change what they've said or remove there comment altogether that they have the freedom to do so. 
+    ![Recipe detail page image](documentation/website_images/recipe_details.png)
+
+    - #### Delete comment
+        - If the user clicks on the delete option for there comment a pop-up appears asking them to confirm they wish to delete the comment. This stops users accidently deleting there comments. Once clicked it takes the user back to the home page. 
+
+            ![Delete comment image](documentation/website_images/delete_comment.png)
+
+    - #### Update comment
+        - If the user clicks to update their comment they are taken to a new page. Here the comment is filled out so the user can edit an indivdual part of their comment instead of having to write the entier comment again. They then select 'Update' and are taken back to the home page. 
+        ![Update comment image](documentation/website_images/Update_comment.png)

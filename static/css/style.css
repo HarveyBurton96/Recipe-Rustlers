@@ -305,6 +305,10 @@ a:hover {
     display: none;
 }
 
+.form-width {
+    width: 50%;
+}
+
 /* media queries */
 @media (max-width:1399px) {
     .image-container {
@@ -348,6 +352,10 @@ a:hover {
     .form-style {
         margin-left: 2%;
         margin-right: 2%;
+    }
+
+    .form-width {
+        width: 95%;
     }
 }
 

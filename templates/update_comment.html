@@ -8,7 +8,7 @@
 {% if user.is_authenticated %}
 <form method="POST">
     {% csrf_token %}
-    <div class="form-style">
+    <div class="form-style form-width">
         {{ form | crispy }}
         <br>
         <input type="submit" value="Update" class="btn btn-update">
