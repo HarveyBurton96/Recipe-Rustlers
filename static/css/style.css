@@ -39,6 +39,10 @@ col {
     padding: 0;
 }
 
+.modal-body {
+    padding-bottom: 0;
+}
+
 /* Recipe detail style */
 .btn-like {
     background-color: #91AA9D;

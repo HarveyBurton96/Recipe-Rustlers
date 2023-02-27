@@ -77,9 +77,26 @@
                 <br>
                 {% if comment.name == user.username %}
                 <a href="{% url 'recipe:update_comment' comment.id %}" class="btn btn-update-delete">Update</a>
-                <a href="{% url 'recipe:delete_comment' comment.id %}" class="btn btn-update-delete">Delete</a>
+                <button type="button" class="btn btn-update-delete" data-bs-toggle="modal" data-bs-target="#commentModal">
+                    Delete
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body" id="commentModalLabel">
+                                <p>Please confirm you wish to delete your comment.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <a href="{% url 'recipe:delete_comment' comment.id %}" class="btn btn-update-delete">Delete</a>
+                            </div>
+                        </div>
+                     </div>
+                </div>
                 {% endif %}
             </p>
+
             {% endfor %}
         </div>
         <div class="col">

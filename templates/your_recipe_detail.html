@@ -6,7 +6,23 @@
     <h2 class="post-title">{{ post.title }}</h2>
     <a href="{% url 'recipe:update_recipe' post.slug %}" class="btn btn-update">Update recipe overview</a>
     <br>
-    <a href="{% url 'recipe:delete_recipe' post.slug %}" class="btn btn-update">Delete</a>
+    <button type="button" class="btn btn-update-delete" data-bs-toggle="modal" data-bs-target="#recipeModal">
+        Delete recipe
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="recipeModal" tabindex="-1" role="dialog" aria-labelledby="recipeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body" id="recipeModalLabel">
+                    <p>Please confirm you wish to delete your recipe.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="{% url 'recipe:delete_recipe' post.slug %}" class="btn btn-update">Delete</a>
+                </div>
+            </div>
+         </div>
+    </div>
 </div>
 <div class="centered-text">
 <div class="row row-cols-1 row-cols-sm-2">
@@ -44,7 +60,24 @@
          
         {{ instruction.step }}. {{ instruction.detail }} 
         <br>
-        <a href="{% url 'recipe:update_instructions' instruction.id %}" class="btn btn-update-delete">Update</a><a href="{% url 'recipe:delete_instruction' instruction.id %}" class="btn btn-update-delete">Delete</a>
+        <a href="{% url 'recipe:update_instructions' instruction.id %}" class="btn btn-update-delete">Update</a>
+        <button type="button" class="btn btn-update-delete" data-bs-toggle="modal" data-bs-target="#instructionModal">
+            Delete
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="instructionModal" tabindex="-1" role="dialog" aria-labelledby="instructionModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body" id="instructionModalLabel">
+                        <p>Please confirm you wish to delete this instruction.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <a href="{% url 'recipe:delete_instruction' instruction.id %}" class="btn btn-update-delete">Delete</a>
+                    </div>
+                </div>
+             </div>
+        </div>
         <br>
         <br>
         {% endfor %}
@@ -60,7 +93,23 @@
         {{ ingredient.unit }} 
         {% endif %}
         <a href="{% url 'recipe:update_ingredients' ingredient.id %}" class="btn btn-update-delete">Update</a>
-        <a href="{% url 'recipe:delete_ingredient' ingredient.id %}" class="btn btn-update-delete">Delete</a>
+        <button type="button" class="btn btn-update-delete" data-bs-toggle="modal" data-bs-target="#ingredientModal">
+            Delete
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="ingredientModal" tabindex="-1" role="dialog" aria-labelledby="ingredientModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body" id="ingredientModalLabel">
+                        <p>Please confirm you wish to delete this ingredient.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <a href="{% url 'recipe:delete_ingredient' ingredient.id %}" class="btn btn-update-delete">Delete</a>
+                    </div>
+                </div>
+             </div>
+        </div>
         <br>
         <br>
         {% endfor %}
