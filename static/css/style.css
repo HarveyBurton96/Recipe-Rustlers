@@ -207,7 +207,12 @@ a:hover {
 }
 
 .text-link {
+    color:black;
     text-decoration: underline;
+}
+
+.text-link:hover {
+    color:white;
 }
 
 /* button styles */
@@ -218,7 +223,7 @@ a:hover {
 
 .button:hover {
     background-color: #3E606F;
-    color: black;
+    color: white;
 }
 
 .btn-update {

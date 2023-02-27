@@ -132,3 +132,65 @@ Before i started creating the website i created 3 mockups to set out my style an
     - Finally is prep and cook time in minutes. 
     - The submit button takes the user to the next page for the ingredient and instruction sections.
     ![Add a recipe image](documentation/website_images/add_a_recipe.png) 
+
+- ### Add a recipe details 
+    - Once the 'Add a recipe' has been completed. This page is shown, it displays the overview information at the top in the same layout as the 'Recipe detail' page. This is to keep consistence across the website.
+    - Next is ingredients which are added by ingredient name, weight, and unit. When each ingredient is added by pressing the 'Add +' button it is shown to the right of the screen. This is so the user can keep track of which ingredients they have added. 
+    - Next is instructions which are added by 'step' then 'detail' this is also displayed to the right once the 'Add +' is pressed. This is so the user can keep track of which instructions they have added. 
+    - Below the top of the screen is a 'Save recipe' button once the ingredients and instructions have been added. This takes the user to the 'Your recipes' page.
+    ![Add a recipe detail upper page image](documentation/website_images/add_a_recipe_detail_part1.png)
+    ![Add a recipe detail lower page image](documentation/website_images/add_a_recipe_detail_part2.png)
+
+- ### Your recipes 
+    - This page shows the user all their created recipes both Drafts and Published. This lets the user pick up a draft recipe if they dont have time to finish adding the recipe in one sitting. 
+    - The recipes are shown by alphabetical order by their titles. 
+    - This page has a pagination of 12 as to not overload the user and displays a next and previous button at the bottom of the page when appropriate. As this user has only added two recipes the next button has not appeared. 
+    ![Your recipes page image](documentation/website_images/Your_recipes.png)
+
+- ### Your recipes detail
+    - This page is only accessed through the Your recpie page. This page lets the user edit or delete the recipe overview or each individual instruction and ingredient.
+    ![Your recipe detail upper page image](documentation/website_images/your_recipes_update_part1.png)
+    ![Your recipe detail lower page image](documentation/website_images/your_recipes_update_part2.png)
+
+    - #### Update recipe overview
+        - The 'Update recipe overview' button takes you to this page. 
+        - This page shows the form for the recipe overview. It is filled in with the existing data to save the user from re-entering the data. 
+        - Once the data has been updated the user can click the 'Update' button and it will take the user back to the 'Your recipes' page. 
+        ![Update recipe overview page image](documentation/website_images/update_recipe_overview.png)
+
+    - #### Delete recipe
+        - If the user clicks on the 'Delete recipe' option for their recipe a pop-up appears asking them to confirm they wish to delete the recipe. This stops the users accidently deleting their recipe. Once clicked it takes the user back to the 'Your recipe' page.
+
+            ![Delete your recipes image](documentation/website_images/delete_recipe.png)
+
+    - #### Add Instructions or Ingredients
+        - If a user click on the 'Add Instructions or Igredients' it takes them to the 'Add a recipe details'. 
+
+            ![Add Instructions or Ingredients image](documentation/website_images/Add_instructions_or_ingredients.png)
+
+    - #### Update instructions 
+        - The 'Update' button takes you to this page. 
+        - This page shows the form for the instruction. It is filled in with the existing data to save the user from re-entering the data. 
+        - Once the data has been updated the user can click the 'Update' button and it will take the user back to the 'Your recipes' page. 
+        ![Update instructions page image](documentation/website_images/instructions_update.png)
+
+    - #### Delete instructions 
+        - If the user clicks on the 'Delete' option for their instruction a pop-up appears asking them to confirm they wish to delete the instruction. This stops the users accidently deleting their instruction. Once clicked it takes the user back to the 'Your recipe' page.
+
+            ![Delete instructions image](documentation/website_images/instructions_delete.png)
+
+    - #### Update ingredients 
+        - The 'Update' button takes you to this page. 
+        - This page shows the form for the ingredient. It is filled in with the existing data to save the user from re-entering the data. 
+        - Once the data has been updated the user can click the 'Update' button and it will take the user back to the 'Your recipes' page. 
+        ![Update ingredients page image](documentation/website_images/ingredient_update.png)
+
+    - #### Delete ingredients 
+        - If the user clicks on the 'Delete' option for their ingredient a pop-up appears asking them to confirm they wish to delete the ingredient. This stops the users accidently deleting their ingredient. Once clicked it takes the user back to the 'Your recipe' page.
+
+            ![Delete ingredients image](documentation/website_images/ingredient_delete.png)
+
+- ### Search bar 
+    - If the user searches for a recipe it will take them to this page. 
+    - This page has a pagination of 12 as to not overload the user and displays a next and previous button at the bottom of the page when appropriate. As this search has only shown one recipe the next button has not appeared. 
+    ![Searched image](documentation/website_images/searched.png)
