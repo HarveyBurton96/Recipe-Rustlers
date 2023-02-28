@@ -2,7 +2,7 @@
 
 This website was created with the purpose to help people find their new favourite recipes. Users logged in will be able to share their favourite recipes with the community and create a list of the recipes they have liked. 
 
-(live version here)
+[live version here](https://recipe-rustlers.herokuapp.com/)
 
 ![Responsiveness image](documentation/website_images/Responsive_screenshot.png)
 
@@ -383,6 +383,78 @@ At the conception of the project, I created three mock-ups of the key pages so I
 ***
 
 ## Deployment 
+
+- Create your github repository
+- Step 1. Installing Django and supporting libraries
+    - Install Django and gunicorn: pip3 install 'django<4' gunicorn
+    - Install supporting libraries: pip3 install dj_database_url psycopg2
+    - Install Cloudinary Libraries: pip3 install dj3-cloudinary-storage
+    - Create requirements file: pip3 freeze --local > requirements.txt
+    - Create Project: django-admin startproject reciperustlers.
+    - Create App: python3 manage.py startapp recipe
+    - Then go to setting.py 
+        -Add to installed apps: INSTALLED_APPS = [ … 'recipe',] then save the file
+    - Go back to the terminal:
+        - Migrate Changes: python3 manage.py migrate
+        - Run Server to Test: python3 manage.py runserver
+- Step 2: Deploying an app to Heroku
+    - Step 2.0 On elephantsql.com:
+        - Log in to your ElephantSQL account
+        - Click “Create New Instance”
+        - Set up your plan
+        - Click “Select Region”
+        - Click “Review”
+        - Check that your details are correct. Then click “Create instance”
+        - Return to the ElephantSQL dashboard and click on the database instance name for this project
+        - Copy your ElephantSQL database URL using the Copy icon.
+    - Step 2.1 Create the Heroku app
+        - Create the Heroku app
+        - Open the settings tab
+        - Click Reveal Config Vars
+        - Add a Config Var called DATABASE_URL (Note: The value should be the ElephantSQL database url you copied in the previous step)
+    - Step 2.2 Attach the Database
+        - In gitpod: Create new env.py file on top level directory
+        - In env.py:
+            - Import os library: import os
+            - Set environment variables: os.environ["DATABASE_URL"] = "Paste in ElephantSQL database URL"
+            - Add in secret key: os.environ["SECRET_KEY"] = "Make up your own randomSecretKey"
+        - In heroku: Add Secret Key to Config Vars - SECRET_KEY, “randomSecretKey”
+    - Step 2.3 Prepare our environment and settings.py file
+        - In settings.py:
+            - Reference env.py: from pathlib import Path
+            import os
+            import dj_database_url
+
+            if os.path.isfile("env.py"):
+                import env
+            - Remove the insecure secret key and replace - links to the SECRET_KEY variable on Heroku: SECRET_KEY = os.environ.get('SECRET_KEY')
+            - Comment out the old DataBases Section
+            - Add new DATABASES Section: DATABASES = {'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))}
+        - In the Terminal: Save all files and Make Migrations
+    - Step 2.4 Get our static and media files stored on Cloudinary
+        - In cloundinary: Copy your CLOUDINARY_URL e.g. API Environment Variable
+        - In env.py: Add Cloudinary URL to env.py - os.environ["CLOUDINARY_URL"] = "cloudinary://************************"
+        - In Heroku:
+            - Add Cloudinary URL to Heroku Config Vars
+            - Add DISABLE_COLLECTSTATIC to Heroku Config Vars 
+        - In settings.py:
+            - Add Cloudinary Libraries to installed apps
+            - Tell Django to use Cloudinary to store media and static files
+            - Link file to the templates directory in Heroku
+            - Change the templates directory to TEMPLATES_DIR
+            - Add Heroku Hostname to ALLOWED_HOSTS
+        - In Gitpod:
+            - Create 3 new folders on top level directory: media, static, templates
+            - Create procfile on the top level directory: Procfile
+        - In Procfile:
+            - Add code - web: gunicorn reciperustlers.wsgi
+        - In Terminal: Add, Commit and Push
+        - In Heroku: Deploy Content manually through heroku on main branch
+- Step 3:
+    - Set DEBUG to False. 
+    - Remove DISABLE_COLLECTSTATIC from Heroku
+    - Save and commit all changes to the project. 
+    - In Heroku: Deploy Content manually through heroku on main branch
 
 ***
 
