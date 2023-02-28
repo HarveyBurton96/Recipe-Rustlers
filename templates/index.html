@@ -5,18 +5,18 @@
     <div class="d-flex flex-wrap justify-content-center">
         <div class="row">
             <div class="col-sm-6 col-md-4 col-lg-3">
-                <img class="img-fluid" src="https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-                <img class="img-fluid image-second" src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                <img class="img-fluid" alt="Image of chips white homemade salsa on top" src="https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                <img class="img-fluid image-second" alt="Image of a stack of pankcakes" src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
             </div>
             <div class="col-sm-6 col-md-4 d-none d-sm-block col-lg-3">
-                <img class="img-fluid" src="https://images.pexels.com/photos/1199957/pexels-photo-1199957.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                <img class="img-fluid" alt="Image of a burger and chips" src="https://images.pexels.com/photos/1199957/pexels-photo-1199957.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
             </div>
             <div class="col-sm-6 col-md-4 d-none d-sm-none d-md-block col-lg-3">
-                <img class="img-fluid" src="https://images.pexels.com/photos/3789885/pexels-photo-3789885.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                <img class="img-fluid" alt="Image of a cheese and an egg on top of rice" src="https://images.pexels.com/photos/3789885/pexels-photo-3789885.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
             </div>
             <div class="col-sm-6 col-md-4 d-none d-md-none d-sm-none d-lg-block col-lg-3">
-                <img class="img-fluid" src="https://images.pexels.com/photos/2664216/pexels-photo-2664216.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-                <img class="img-fluid image-second" src="https://images.pexels.com/photos/1527603/pexels-photo-1527603.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                <img class="img-fluid" alt="Image of ramen in a white bowl" src="https://images.pexels.com/photos/2664216/pexels-photo-2664216.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                <img class="img-fluid image-second" alt="Image of a tomato pasta with kidney beans" src="https://images.pexels.com/photos/1527603/pexels-photo-1527603.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
             </div>
         </div>
     </div>
@@ -38,9 +38,9 @@
             <div class="card">
                 <div class="image-container">
                     {% if "no_image" in post.featured_image.url %}
-                    <img src="https://www.firstfence.co.uk/images/no-image.jpg" class="card-img-top">
+                    <img alt="Image with text saying ‘Image not available’" src="https://www.firstfence.co.uk/images/no-image.jpg" class="card-img-top">
                     {% else %}
-                    <img class="card-img-top" src=" {{ post.featured_image.url }}">
+                    <img class="card-img-top" alt="Image of the recipe described" src="{{ post.featured_image.url }}">
                     {% endif %}
                 </div>
                 <div class="card-body">
